@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Dm Dispatch — Easter Edition 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf6e8;
+    --warm-yellow: #f5c842;
+    --pale-yellow: #fdf0b0;
+    --spring-green: #4a7c59;
+    --pale-green: #d4e8d8;
+    --dark: #1a1a1a;
+    --mid: #4a4a4a;
+    --light-mid: #888;
+    --egg-blue: #b8dce8;
+    --coral: #e8704a;
+    --parchment: #f8f0dc;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark);
+    line-height: 1.7;
+  }
+
+  /* Header */
+  .masthead {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead-top-bar {
+    background: var(--warm-yellow);
+    color: var(--dark);
+    text-align: center;
+    padding: 8px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .masthead-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 32px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+  }
+
+  .masthead-title-block h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    color: var(--cream);
+  }
+
+  .masthead-title-block h1 span {
+    color: var(--warm-yellow);
+  }
+
+  .masthead-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--light-mid);
+    margin-top: 16px;
+  }
+
+  .easter-egg-badge {
+    background: var(--warm-yellow);
+    color: var(--dark);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.2;
+    flex-shrink: 0;
+    transform: rotate(8deg);
+  }
+
+  .easter-egg-badge span {
+    font-size: 20px;
+    font-style: normal;
+  }
+
+  .masthead-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .masthead-meta {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 12px 32px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--light-mid);
+    text-transform: uppercase;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* Section headings */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--spring-green);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* Welcome */
+  .welcome-block {
+    padding: 56px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .welcome-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .welcome-block p {
+    color: var(--mid);
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+
+  .egg-hunt-card {
+    background: var(--pale-yellow);
+    border: 2px dashed var(--warm-yellow);
+    border-radius: 12px;
+    padding: 24px;
+    font-size: 14px;
+  }
+
+  .egg-hunt-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .egg-hunt-card p {
+    color: var(--mid);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .egg-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--spring-green);
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* Full-bleed divider sections */
+  .full-bleed {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 64px 32px;
+    margin: 8px 0;
+  }
+
+  .full-bleed-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .full-bleed h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .full-bleed h2 em {
+    color: var(--warm-yellow);
+    font-style: italic;
+  }
+
+  .full-bleed p {
+    color: rgba(255,255,255,0.75);
+    font-size: 16px;
+    max-width: 640px;
+    margin-bottom: 16px;
+  }
+
+  .full-bleed .section-label {
+    color: var(--warm-yellow);
+  }
+
+  /* Experiments grid */
+  .experiments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .experiment-chip {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.4;
+  }
+
+  .experiment-chip strong {
+    display: block;
+    color: var(--warm-yellow);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  /* Two-col sections */
+  .two-col {
+    padding: 56px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .section-card {
+    padding: 56px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .section-card p {
+    color: var(--mid);
+    margin-bottom: 14px;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    border-left: 4px solid var(--warm-yellow);
+    padding: 16px 0 16px 24px;
+    margin: 28px 0;
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--dark) !important;
+    line-height: 1.4;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    color: var(--light-mid) !important;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  /* Stats */
+  .stats-strip {
+    background: var(--pale-green);
+    padding: 40px 32px;
+  }
+
+  .stats-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+
+  .stat-item .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--spring-green);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-item .stat-label {
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* People section */
+  .people-section {
+    background: var(--parchment);
+    padding: 56px 32px;
+  }
+
+  .people-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .people-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  .people-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .person-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px 22px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .person-card .person-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .person-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .person-card p {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  .anniversary-strip {
+    margin-top: 28px;
+    background: var(--dark);
+    border-radius: 10px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .anniversary-item {
+    color: white;
+  }
+
+  .anniversary-item .years {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--warm-yellow);
+    line-height: 1;
+  }
+
+  .anniversary-item .name {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 2px;
+  }
+
+  /* Highlights */
+  .highlights-section {
+    padding: 56px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .highlights-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  .highlight-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    align-items: start;
+  }
+
+  .highlight-item:last-child {
+    border-bottom: none;
+  }
+
+  .highlight-icon {
+    background: var(--pale-yellow);
+    border-radius: 10px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .highlight-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .highlight-item p {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  /* Indy's Corner */
+  .indy-section {
+    background: var(--spring-green);
+    color: white;
+    padding: 56px 32px;
+  }
+
+  .indy-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 36px;
+    align-items: start;
+  }
+
+  .indy-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--warm-yellow);
+    flex-shrink: 0;
+    border: 3px solid var(--warm-yellow);
+  }
+
+  .indy-section .section-label {
+    color: var(--warm-yellow);
+  }
+
+  .indy-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .indy-section p {
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 14px;
+    font-size: 15px;
+  }
+
+  /* Gathering */
+  .gathering-section {
+    background: var(--egg-blue);
+    padding: 48px 32px;
+  }
+
+  .gathering-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .gathering-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .gathering-inner p {
+    font-size: 15px;
+    color: var(--mid);
+    max-width: 480px;
+  }
+
+  .gathering-date-pill {
+    background: var(--dark);
+    color: var(--cream);
+    border-radius: 100px;
+    padding: 20px 28px;
+    text-align: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .gathering-date-pill .date-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    display: block;
+  }
+
+  .gathering-date-pill .date-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-yellow);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* Footer / Odds & Ends */
+  .odds-section {
+    padding: 56px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .odds-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 28px;
+  }
+
+  .odds-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .odds-item {
+    background: white;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .odds-item .odds-emoji {
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .odds-item h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .odds-item p {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    padding: 40px 32px;
+    text-align: center;
+    font-size: 13px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  footer strong {
+    color: var(--warm-yellow);
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 8px;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  footer .footer-meta {
+    margin-top: 16px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Hidden Easter egg styling */
+  .hidden-egg {
+    color: var(--cream); /* invisible on cream bg—appears in dark sections */
+    font-size: 10px;
+    cursor: default;
+    user-select: none;
+  }
+
+  .hidden-egg:hover {
+    color: var(--warm-yellow) !important;
+  }
+
+  .egg-found {
+    display: inline-block;
+    background: var(--warm-yellow);
+    color: var(--dark);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    vertical-align: middle;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  /* Horizontal rule */
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* Link styles */
+  a { color: var(--spring-green); }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .welcome-block, .two-col, .indy-inner, .gathering-inner {
+      grid-template-columns: 1fr;
+    }
+    .experiments-grid { grid-template-columns: 1fr 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .people-grid { grid-template-columns: 1fr; }
+    .odds-grid { grid-template-columns: 1fr; }
+    .masthead-inner { grid-template-columns: 1fr; }
+    .easter-egg-badge { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-top-bar">
+    🐣 &nbsp; Easter Edition — Spring 2026 &nbsp; 🌷 &nbsp; Issue #2 &nbsp; 🐰 &nbsp; The Dispatch is Back
+  </div>
+  <div class="masthead-inner">
+    <div class="masthead-title-block">
+      <h1>The <span>Dm</span><br>Dispatch</h1>
+      <p class="masthead-sub">Your Monthly Pulse on Dark Matter Labs</p>
+    </div>
+    <div class="easter-egg-badge">
+      <span>🥚</span>
+      Easter<br>Edition
+    </div>
+  </div>
+  <hr class="masthead-divider">
+  <div class="masthead-meta">
+    <span>March 2026</span>
+    <span>Dark Matter Labs Internal Newsletter</span>
+    <span>Issue #2</span>
+  </div>
+</header>
+
+<!-- WELCOME -->
+<div class="welcome-block">
+  <div>
+    <span class="section-label">Welcome Back</span>
+    <h2>Yes, We're Back. Again. This Time With Chocolate.</h2>
+    <p>Issue #1 landed in January and caused quite the stir — not least because it was actually <em>sent</em>. We promised consistency. And here we are, honouring that, albeit with a seasonal twist.</p>
+    <p>It's Easter. The season of renewal, new beginnings, and hiding things in plain sight. Which, as it turns out, describes this moment at Dm rather well — we're in the middle of cracking open our organisation, hunting for new structures, and seeing what hatches.</p>
+    <p>So: welcome to Issue #2. Consider this your egg hunt. There are 5 hidden Easter eggs scattered throughout this newsletter. Find them all and share your count in <strong>#org-hq</strong> 🐣</p>
+    <p style="font-size: 13px; color: var(--light-mid);">— The Dm Dispatch Team</p>
+  </div>
+  <div class="egg-hunt-card">
+    <h3>🥚 Easter Egg Hunt</h3>
+    <p>Hidden throughout this newsletter are 5 Easter eggs. They could be words, symbols, phrases — or something stranger. Keep your eyes peeled.</p>
+    <span class="egg-count">Eggs found so far: 0 / 5</span>
+    <p style="margin-top: 10px;">Post your count in <strong>#org-hq</strong> when you're done!</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- GOVERNANCE: THE BIG ONE -->
+<div class="full-bleed">
+  <div class="full-bleed-inner">
+    <span class="section-label">Governance & Org Transition</span>
+    <h2>From Hunches<br>to <em>Hatching</em>.</h2>
+    <p>The Governance Gap Committee has been busy. Since our last issue, things have moved from sensing and strategising into real, live experimentation. We've cracked the egg open. Now we find out what's inside.</p>
+    <p>After an intensive Q&A process in early February — including two packed sessions hosted by Eunsoo and Annette — the GGC published the <strong>DM Strategic Experiments deck</strong>, launching a 90-day experimental period across 16 specific tests. These aren't abstract ideas. They're happening now.</p>
+    
+    <div class="pull-quote" style="border-left-color: var(--warm-yellow);">
+      <p style="color: rgba(255,255,255,0.9) !important;">"We are moving from 'sensing what is broken' to actively designing what comes next — together."</p>
+      <cite style="color: rgba(255,255,255,0.45) !important;">— The Governance Gap Committee, February 2026</cite>
+    </div>
+
+    <p>A new dedicated Slack channel — <strong>#org-governance-transition</strong> — now exists to keep these conversations focused and accessible without flooding #org-hq or #org-announcements. Everyone has been invited. This is the place for experiment updates, questions, and feedback.</p>
+
+    <div class="experiments-grid">
+      <div class="experiment-chip">
+        <strong>#5 — Growth Pot</strong>
+        Internal investment vehicle for high-potential initiatives. Funded by JRF core funding. Two teams already in discovery phase.
+      </div>
+      <div class="experiment-chip">
+        <strong>#11 — HealthKeepers Circle</strong>
+        Remit updated. Now your first port of call for flagging concerns about Dm's health that don't have an obvious home elsewhere. Contact Andrea, Sophia, Jason, Leon, Adam, or Annette.
+      </div>
+      <div class="experiment-chip">
+        <strong>#12 — Change Orchestration Officer</strong>
+        A new senior hire in progress. Draft role pack live. Watch this space — job post going out in coming weeks.
+      </div>
+      <div class="experiment-chip">
+        <strong>#16 — MissionDev Meta-Circle</strong>
+        Officially formed and meeting. Members: Eunsoo, Jason, Gurden, Olaf, Adam, Annette, Robyn. Two scoping sessions complete.
+      </div>
+      <div class="experiment-chip">
+        <strong>Experiments 1, 2, 9 + more</strong>
+        Teams actively preparing messages and updates. Look out for announcements in #org-governance-transition in coming weeks.
+      </div>
+      <div class="experiment-chip" style="background: rgba(245,200,66,0.1); border-color: rgba(245,200,66,0.3);">
+        <strong>How we're organised</strong>
+        Updated document now live: <em>"Dm04 — How we are organised v2 [Nov 2025]"</em>. This is the key reference point during the experiment period.
+        <span style="font-size:10px; color: rgba(255,255,255,0.3); cursor:default;" title="🥚 Egg #1: You found it! A well-structured org is like a well-designed nest.">🪺</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THE GROWTH POT -->
+<div class="section-card">
+  <span class="section-label">New Initiative</span>
+  <h2>Introducing: The Growth Pot 🌱</h2>
+  <p>Born out of Experiment #5 (Capacity Stewardship & Unfunded Investments), the <strong>Growth Pot</strong> is a new internal investment vehicle — currently funded by JRF core funding — designed to bridge high-potential initiatives to their next phase of funding.</p>
+  <div class="pull-quote">
+    <p>"Dm has organised strongly around bottom-up energy — giving ample space for teams to drive work they are passionate about. The Growth Pot adds strategic viability as a filter."</p>
+    <cite>— Mission Pathways Circle, February 2026</cite>
+  </div>
+  <p>A key feature is the <strong>Sponsor</strong> role — a strategic navigator who translates external signals into guidance for teams. Two teams are already in discovery. If you're interested in applying in future, reach out to <strong>Annette, Adam, or Eunsoo</strong>, or drop into <strong>#circle-mission-pathways</strong>.</p>
+  <p style="font-size:13px; color: var(--light-mid);">Full overview: <a href="https://www.notion.so/darkmatterlabs/Overview-of-the-JRF-Growth-Pot-302190f347a280fca370f00dec648246">Notion — Overview of the JRF Growth Pot</a></p>
+</div>
+
+<hr class="divider">
+
+<!-- 10X100 QUARTERLY -->
+<div class="two-col">
+  <div>
+    <span class="section-label">Q1 Quarterly — February 18</span>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 16px;">The 10×100: A Different Kind of Quarter</h2>
+    <p>Our first quarterly of 2026 brought the team together with special guests <strong>Immy</strong> and <strong>James</strong>, who sparked conversation about the gap between the possible and the necessary — and Dm's role in holding that space.</p>
+    <p>Key asks coming out of the session:</p>
+    <ul style="margin-left: 20px; color: var(--mid); font-size: 15px; line-height: 2;">
+      <li>Role-modelling behavioural change is on all of us</li>
+      <li>Sign up to experiments — participation is how they work</li>
+      <li>Review the framing video from Annette if you haven't yet</li>
+    </ul>
+    <p style="font-size: 13px; color: var(--light-mid);">
+      <a href="https://drive.google.com/file/d/10j8eEdAenncA80Do9FL9NqoSpdoqeDRz/view">Recording available here</a> · <a href="https://docs.google.com/presentation/d/1181JtiKWwnEZYYL-pYSZS7OPh3OvrpYMldPrWm7lU9g/">Session deck here</a>
+    </p>
+  </div>
+  <div>
+    <span class="section-label">Finance Update</span>
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 16px;">2025 Ended Better Than Forecast</h2>
+    <p>Andrea shared the group's December 2025 results — a better-than-expected picture:</p>
+    <ul style="margin-left: 20px; color: var(--mid); font-size: 15px; line-height: 2;">
+      <li>Group deficit: ~£152k (vs £378k forecast)</li>
+      <li>Closing net assets: £191k</li>
+      <li>Cash position: £1.7m (~20 weeks of ops)</li>
+    </ul>
+    <p>Pay uplifts for 2026 are confirmed — CPI geographic uplifts and long-service increases honoured. A request-based pay rebalance process is now in place (the deadline to submit has passed; next year's process will be cleaner still).</p>
+    <p style="font-size: 13px; color: var(--light-mid);">Note: Dutch VAT ruling still pending — could improve results further.</p>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">16</span>
+      <span class="stat-label">Live experiments across the org</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">£1.7m</span>
+      <span class="stat-label">Cash in bank (~20 weeks ops)</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-label">New team members since Jan 2026</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">Oct 11</span>
+      <span class="stat-label">Next All-Team Gathering starts</span>
+    </div>
+  </div>
+</div>
+
+<!-- INDY'S CORNER -->
+<div class="indy-section">
+  <div class="indy-inner">
+    <div class="indy-avatar">I</div>
+    <div>
+      <span class="section-label">Indy's Corner</span>
+      <h2>On the Gap Between Possible and Necessary</h2>
+      <p>Following the 10×100, Adam shared a reflection that's been circulating in a few minds: the gap between what is possible and what is necessary — and the role Dm plays in holding that tension for partners and for the work itself.</p>
+      <p>Indy also delivered a keynote at the <strong>Long Now Foundation in San Francisco</strong> in late January, alongside Robyn and Arianna. The recording is available. Meanwhile, his piece with David Hunter — <em>"Law beyond Modernity"</em> — is quietly causing ripples: the CEO of the Chancery Lane Project reached out to say it "got him going for days."</p>
+      <p style="font-size: 13px; color: rgba(255,255,255,0.5);"><a href="https://www.youtube.com/live/AT6fWX4CbhA" style="color: rgba(255,255,255,0.6);">Long Now keynote recording ↗</a> · <a href="https://theuncertainsolicitor.substack.com/p/law-beyond-modernity-7-legal-infrastructure" style="color: rgba(255,255,255,0.6);">Law beyond Modernity piece ↗</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT HIGHLIGHTS -->
+<div class="highlights-section">
+  <span class="section-label">Work in the World</span>
+  <h2>Project Highlights 🌍</h2>
+
+  <div class="highlight-item">
+    <div class="highlight-icon">🏛️</div>
+    <div>
+      <h4>Scottish Government Workshop — V&A Dundee</h4>
+      <p>Adam, Georgia, Amelia, Joost, and Leah ran a full-day pop-up studio with the Scottish Government at the V&A in Dundee. The focus: what would mission-driven government actually look like in Scotland? The team drew on lessons from 100+ cities. Multiple follow-up conversations have already been requested. Adam has declared a Perthshire pub the new DML Scotland HQ.</p>
+    </div>
+  </div>
+
+  <div class="highlight-item">
+    <div class="highlight-icon">🏙️</div>
+    <div>
+      <h4>Sheffield Demonstrators — £800k City Goals Milestone</h4>
+      <p>Sheffield City Council (via public health) signed off <strong>£800k</strong> towards the City Goals — to be channelled through the Partnership Lab. Annette and Indy were in Sheffield last week co-convening a landmark cross-sector meeting that brought together JRF, Regional Futures, Sheffield City Council, Key Fund, OPUS, and Voluntary Action Sheffield. A New Constellations event from seven years ago was cited as the original catalyst for many in the room.</p>
+    </div>
+  </div>
+
+  <div class="highlight-item">
+    <div class="highlight-icon">🌊</div>
+    <div>
+      <h4>Planetary Civics Arc: A Conscious Closing</h4>
+      <p>Indy, Prateek, and Zehra made an announcement that's worth naming properly: the <strong>Planetary Civics Arc has achieved its goals and is formally closing</strong> as an arc. This is rare in DML history — the conscious, celebrated finishing of a phase. Projects continue (the Compendium, WAVE, Madinah, PCI Alliance), but the arc structure stands down. Kudos to everyone who shaped this body of work. 🥚<!-- Egg #2: You found it! Planetary Civics closes; something new opens. --></p>
+    </div>
+  </div>
+
+  <div class="highlight-item">
+    <div class="highlight-icon">🧊</div>
+    <div>
+      <h4>Madrid Massive Cooling Coalition — Now with Malik</h4>
+      <p><strong>Malik Lakoubay</strong> joined Dm on 24 February as Civilisation Options Fund co-lead, based in Madrid. He's also working full-time on the Madrid Massive Cooling Coalition alongside Alicia and Joost. Malik brings 15 years in market and corporate finance plus 5 years with RadicalxChange Foundation in Buenos Aires. Welcome to Dm, Malik — sports metaphors and all.</p>
+    </div>
+  </div>
+
+  <div class="highlight-item">
+    <div class="highlight-icon">🗺️</div>
+    <div>
+      <h4>Copenhagen Built Environment Outcome Accelerator in Innovation Atlas</h4>
+      <p>The X0 (M0) Outcome Accelerator for the Built Environment in Copenhagen will be featured in <strong>Bloxhub's Innovation Atlas</strong>, launching 20 March. As Ivana noted: "Pretty cool as we haven't even started doing it yet." DML thinking, already shaping the field.</p>
+    </div>
+  </div>
+
+  <div class="highlight-item">
+    <div class="highlight-icon">💰</div>
+    <div>
+      <h4>Bioregional Finance: Opening "a Whole New Universe"</h4>
+      <p>Leon flagged multiple soft but meaningful signals: impact investors are describing the bioregional financing publication as opening up "a whole new universe." Someone working across private investment, investment banks, and government added: "Your work has reached everyone I speak to." Soft signals, yes — but ones worth tracking.</p>
+    </div>
+  </div>
+
+  <div class="highlight-item">
+    <div class="highlight-icon">📢</div>
+    <div>
+      <h4>DML Open Office Hours — Coming Soon</h4>
+      <p>Following Indy's viral LinkedIn moment about running open office hours, Adam is formalising this into a 70-minute public open call. Format TBD (Broad & Invitational vs. Themed & Deep), but the intent is clear: bring the outside world into contact with DML's work, and vice versa. Eventbrite sign-ups, LinkedIn amplification, and team lightning talks are all being considered. Watch for the date.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PEOPLE -->
+<div class="people-section">
+  <div class="people-inner">
+    <span class="section-label">People & Community</span>
+    <h2>New Faces, New Chapters 🐣</h2>
+
+    <div class="people-grid">
+      <div class="person-card">
+        <span class="person-tag">🐣 New Arrival — February 24</span>
+        <h4>Malik Lakoubay</h4>
+        <p>Civilisation Options Fund co-lead & Madrid Massive Cooling Coalition. Based in Madrid 🇪🇸. Background in market finance, civic participation tech, and RadicalxChange. Self-described as "a global caravan of migrants" (French/American, family from Madagascar and India). Sports metaphors incoming.</p>
+      </div>
+
+      <div class="person-card">
+        <span class="person-tag">🐣 New Arrival — February 16</span>
+        <h4>Saem Yun</h4>
+        <p>Joined the team in mid-February. Welcome, Saem! More details to follow as Saem settles in.</p>
+      </div>
+
+      <div class="person-card">
+        <span class="person-tag">🐣 New Arrival — January 2026</span>
+        <h4>Iyana Abrams</h4>
+        <p>Joined the UK team and is keen to get into the London office. Very happy to be here — and already planning a trip in.</p>
+      </div>
+
+      <div class="person-card" style="background: var(--pale-yellow); border-color: var(--warm-yellow);">
+        <span class="person-tag" style="color: var(--spring-green);">🌟 On Leave</span>
+        <h4>A note on capacity</h4>
+        <p>Romy Snijders is on leave until 3 August 2026. Chloe Treger is on leave until 1 December 2026. We hope they're resting well and hoarding Easter eggs.</p>
+        <p style="font-size:11px; color: var(--light-mid); margin-top:8px;"><em>🥚<!--Egg #3: Found! Even Easter eggs need rest.--></em></p>
+      </div>
+    </div>
+
+    <div class="anniversary-strip">
+      <div style="color: rgba(255,255,255,0.5); font-size: 12px; font-family: 'DM Mono', monospace; letter-spacing: 0.15em; text-transform: uppercase; align-self: center; width: 100%; margin-bottom: 4px;">🎂 Recent Anniversaries at Dm</div>
+      <div class="anniversary-item">
+        <div class="years">7</div>
+        <div class="name">Adam Purvis</div>
+      </div>
+      <div class="anniversary-item">
+        <div class="years">5</div>
+        <div class="name">Alizé De Buck</div>
+      </div>
+      <div class="anniversary-item">
+        <div class="years">3</div>
+        <div class="name">Marcial Vargas</div>
+      </div>
+      <div class="anniversary-item">
+        <div class="years">2</div>
+        <div class="name">Prateek Shankar</div>
+      </div>
+      <div style="color: rgba(255,255,255,0.4); font-size: 13px; font-family: 'DM Sans', sans-serif; align-self: center; margin-left: auto;">Thank you for being here. 🌷</div>
+    </div>
+  </div>
+</div>
+
+<!-- GATHERING -->
+<div class="gathering-section">
+  <div class="gathering-inner">
+    <div>
+      <span class="section-label">All-Team Gathering 2026</span>
+      <h2>Save the Date — October</h2>
+      <p>We're returning to <strong>Heerlijckyt</strong> — same venue, same love, hopefully improved oatmeal situation. The 2026 All-Team Gathering is confirmed for <strong>11–16 October 2026</strong>. Block it in your calendars now.</p>
+      <p style="margin-top: 10px; font-size: 13px; color: var(--mid);">More details will come through <strong>#org-gathering-2026</strong> and future Dispatches. Photo trove from 2025 still available in the Drive — highly recommended for a mood boost.</p>
+    </div>
+    <div class="gathering-date-pill">
+      <span class="date-main">11–16 Oct</span>
+      <span class="date-sub">2026 · Heerlijckyt</span>
+    </div>
+  </div>
+</div>
+
+<!-- ODDS AND ENDS -->
+<div class="odds-section">
+  <span class="section-label">Odds & Ends</span>
+  <h2>The Basket 🧺</h2>
+  <div class="odds-grid">
+
+    <div class="odds-item">
+      <span class="odds-emoji">🤖</span>
+      <h4>AI & LLM at Dm</h4>
+      <p>Gurden kicked off a conversation in #org-hq about how we use AI and LLMs as a team — and how we do it responsibly. Early protocols are being documented in Notion. If you use AI tools daily (or are curious/concerned), join the thread and add your emoji vote.</p>
+      <p style="font-size: 11px; color: var(--light-mid); margin-top: 8px;"><a href="https://www.notion.so/darkmatterlabs/AI-LLM-Usage-Protocols-238190f347a2807aa7b4da682816a766">AI/LLM Usage Protocols in Notion ↗</a></p>
+    </div>
+
+    <div class="odds-item">
+      <span class="odds-emoji">🔗</span>
+      <h4>LinkedIn Push — DML in the World</h4>
+      <p>Adam has been running a structured LinkedIn series celebrating DML's 2025 work and building outward relationships. The process and CRM are being built as he goes. If you have photos, missing projects to add, or partners worth celebrating — let him know.</p>
+    </div>
+
+    <div class="odds-item">
+      <span class="odds-emoji">📋</span>
+      <h4>Streamtime Reminder (Yes, Again)</h4>
+      <p>We know. We're sorry. But please log your time in Streamtime by day 3 of each month. It genuinely helps Andrea close accounts, and it's part of our shared social contract. Monthly completion percentages depend on it.</p>
+      <p style="font-size: 10px; color: var(--light-mid); margin-top: 6px; font-family: 'DM Mono', monospace;">🥚 ← Egg #4 found! (We hid one here because we knew you'd read the Streamtime section.)</p>
+    </div>
+
+    <div class="odds-item">
+      <span class="odds-emoji">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+      <h4>Scotland + a Perthshire Pub</h4>
+      <p>Following the Scottish Government workshop, Adam has officially declared a favourite pub in Perthshire the new DML Scotland HQ. No formal announcement was made. But consider it noted.</p>
+    </div>
+
+    <div class="odds-item">
+      <span class="odds-emoji">⚖️</span>
+      <h4>Change Orchestration Officer</h4>
+      <p>A new senior hire is in the works to steward overall organisational health and risk. The draft role pack is being finalised. Expected to go live in the coming weeks. Watch #org-announcements.</p>
+    </div>
+
+    <div class="odds-item">
+      <span class="odds-emoji">🧠</span>
+      <h4>Claude in Notion (Still Working)</h4>
+      <p>As mentioned in Issue #1 — Claude AI is connected to the Dm Notion workspace. You can ask it about policies, projects, and team expertise. Login via <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5dcdbd3daf5d1d4c7ded8d4c1c1d0c7d9d4d7c69bdac7d2">[email&#160;protected]</a> (use the login code from the info@ Google Group). Yes, this newsletter was drafted using it too.</p>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FOOTER -->
+<footer>
+  <strong>The Dm Dispatch 🐣</strong>
+  <p>Your monthly internal newsletter. Questions, feedback, missing stories? Drop us a note in <strong>#org-hq</strong> or reply to this newsletter.</p>
+  <p class="footer-meta" style="margin-top: 20px;">
+    Issue #2 — Easter Edition — March 2026 — Dark Matter Labs
+  </p>
+  <p style="margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.25); font-family: 'DM Mono', monospace;">
+    🥚 Egg #5: You made it to the end. That's the rarest egg of all. Post "🐣 FULL BASKET" in #org-hq.
+  </p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Easter egg hover tooltips — make hidden eggs glow on hover
+document.querySelectorAll('.hidde
