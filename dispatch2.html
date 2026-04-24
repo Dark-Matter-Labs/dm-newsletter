@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The DM Dispatch — April 2026 — Issue #2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf6e8;
+    --warm-yellow: #f5c842;
+    --pale-yellow: #fdf0b0;
+    --spring-green: #4a7c59;
+    --pale-green: #d4e8d8;
+    --dark: #1a1a1a;
+    --mid: #4a4a4a;
+    --light-mid: #888;
+    --egg-blue: #b8dce8;
+    --coral: #e8704a;
+    --parchment: #f8f0dc;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark);
+    line-height: 1.7;
+  }
+
+  /* Header */
+  .masthead {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 0;
+    position: relative;
+  }
+
+  .masthead-top-bar {
+    background: var(--warm-yellow);
+    color: var(--dark);
+    text-align: center;
+    padding: 8px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .masthead-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 32px 40px;
+    text-align: center;
+  }
+
+  .masthead-title-block h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    color: var(--cream);
+  }
+
+  .masthead-title-block h1 span {
+    color: var(--warm-yellow);
+  }
+
+  .masthead-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--light-mid);
+    margin-top: 16px;
+  }
+
+  .masthead-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .masthead-meta {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 12px 32px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--light-mid);
+    text-transform: uppercase;
+  }
+
+  /* Back link */
+  .back-link {
+    display: block;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 32px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+
+  .back-link a {
+    color: var(--spring-green);
+    text-decoration: none;
+  }
+
+  .back-link a:hover {
+    text-decoration: underline;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* Section headings */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--spring-green);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* Welcome */
+  .welcome-block {
+    padding: 56px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .welcome-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .welcome-block p {
+    color: var(--mid);
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+
+  .highlight-box {
+    background: var(--pale-yellow);
+    border-left: 4px solid var(--warm-yellow);
+    padding: 20px 25px;
+    margin: 30px 0;
+    border-radius: 8px;
+  }
+
+  .highlight-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Full-bleed divider sections */
+  .full-bleed {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 64px 32px;
+    margin: 8px 0;
+  }
+
+  .full-bleed-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .full-bleed h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .full-bleed h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--warm-yellow);
+    margin: 32px 0 16px;
+  }
+
+  .full-bleed h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+    text-decoration-color: var(--warm-yellow);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  .full-bleed p {
+    color: rgba(255,255,255,0.75);
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .full-bleed ul {
+    list-style: none;
+    margin: 16px 0;
+  }
+
+  .full-bleed li {
+    color: rgba(255,255,255,0.75);
+    font-size: 15px;
+    margin-bottom: 12px;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .full-bleed li:before {
+    content: "•";
+    color: var(--warm-yellow);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  .full-bleed .section-label {
+    color: var(--warm-yellow);
+  }
+
+  /* Section cards */
+  .section-card {
+    padding: 56px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .section-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 32px 0 16px;
+  }
+
+  .section-card p {
+    color: var(--mid);
+    margin-bottom: 14px;
+  }
+
+  .section-card ul {
+    margin: 16px 0 16px 30px;
+  }
+
+  .section-card li {
+    color: var(--mid);
+    margin-bottom: 10px;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    border-left: 4px solid var(--warm-yellow);
+    padding: 16px 0 16px 24px;
+    margin: 28px 0;
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--dark) !important;
+    line-height: 1.4;
+  }
+
+  /* Celebrations */
+  .celebration-list {
+    background: var(--pale-yellow);
+    border-left: 4px solid var(--warm-yellow);
+    padding: 24px 28px;
+    margin: 24px 0;
+    border-radius: 8px;
+  }
+
+  .celebration-list h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .celebration-list ul {
+    margin-left: 0;
+    list-style: none;
+  }
+
+  .celebration-list li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .celebration-list li:before {
+    content: "🎉";
+    position: absolute;
+    left: 0;
+  }
+
+  /* Bingo table */
+  .bingo-section {
+    padding: 56px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .bingo-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .bingo-intro {
+    text-align: center;
+    color: var(--mid);
+    margin-bottom: 32px;
+  }
+
+  .bingo-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+  }
+
+  .bingo-table td {
+    border: 2px solid #ddd;
+    padding: 16px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.4;
+    background: white;
+  }
+
+  .bingo-table td:nth-child(odd) {
+    background: var(--pale-yellow);
+  }
+
+  .free-space {
+    background: var(--warm-yellow) !important;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .bingo-instructions {
+    text-align: center;
+    color: var(--mid);
+    font-size: 15px;
+    margin-top: 24px;
+  }
+
+  /* Links */
+  a {
+    color: var(--spring-green);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    max-width: 860px;
+    margin: 40px auto;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    padding: 40px 32px;
+    text-align: center;
+    font-size: 13px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  footer strong {
+    color: var(--warm-yellow);
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  footer .footer-meta {
+    margin-top: 16px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .masthead-meta {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+    .bingo-table td {
+      padding: 10px;
+      font-size: 11px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-top-bar">
+    ISSUE #2 &nbsp; • &nbsp; APRIL 2026 &nbsp; • &nbsp; #ADDTONEWSLETTER FEATURE LAUNCHES
+  </div>
+  <div class="masthead-inner">
+    <div class="masthead-title-block">
+      <h1>The <span>DM</span><br>Dispatch</h1>
+      <p class="masthead-sub">Your Monthly Pulse on Dark Matter Labs</p>
+    </div>
+  </div>
+  <hr class="masthead-divider">
+  <div class="masthead-meta">
+    <span>April 2026</span>
+    <span>Dark Matter Labs Internal Newsletter</span>
+    <span>Issue #2</span>
+  </div>
+</header>
+
+<div class="back-link">
+  <a href="/">← Back to Archive</a>
+</div>
+
+<!-- WELCOME -->
+<div class="welcome-block">
+  <span class="section-label">Welcome Back</span>
+  <h2>Hello team,</h2>
+  <p>After a successful launch of our first newsletter, we're back with Issue #2. Thank you to everyone who shared feedback — your input helped shape this edition.</p>
+  
+  <div class="highlight-box">
+    <p><strong>New feature:</strong> Want to add something to the next newsletter? Simply include <strong>#addtonewsletter</strong> to your message in any Slack channel, and we'll make sure it gets included!</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- GGC EXPERIMENTS -->
+<div class="full-bleed">
+  <div class="full-bleed-inner">
+    <span class="section-label">Key Organizational Updates</span>
+    <h2>Governance Gap Committee:<br>First Full Month of Active Experimentation</h2>
+    
+    <p>March 2026 marked the first full month of active experimentation across the <strong>17 GGC experiments</strong>. A comprehensive synthesis of learnings has been compiled from the 31 March learning session, Miro canvas, Notion learnings database (21 entries), and baseline survey (26 responses).</p>
+    
+    <p><strong>Baseline survey results show:</strong></p>
+    <ul>
+      <li><strong>High confidence in GGC process</strong> (mean 7.6/10 across three confidence questions)</li>
+      <li><strong>Significant gaps identified:</strong> Knowledge transfer (2.5/6), mission coherence (2.7/6), cross-team coordination (2.8/6), publication/authorship channels (2.7/6)</li>
+      <li><strong>Strong foundation:</strong> Psychological safety scores high — comfortable admitting mistakes (5.0/6) and asking for help (5.2/6)</li>
+    </ul>
+
+    <h3>Key Experiment Highlights</h3>
+
+    <h4>Stewardship & Leadership Structure</h4>
+    <ul>
+      <li><strong>Experiment #1 - Stewards as new formal roles:</strong> Multiple draft versions shared for wide consultation. Roles must serve four functions: steering mission, building pathways/revenue, operational tending, and team mentoring.</li>
+      <li><strong>Experiment #2 - Handover from informal stewards:</strong> Transition Manifesto shared. Issues redirecting to Health Keepers. Pathway exists for Annette to refocus on project work.</li>
+      <li><strong>Experiment #11 - Health Keepers Circle expansion:</strong> Operating under expanded responsibilities for 1.5 months. Jordan departed; Jorn and Prateek joined. Midway kick-off/onboarding planned April-June.</li>
+      <li><strong>Experiment #12 - Change Orchestrator (CO):</strong> Role description drafted, moved to internal hiring. Application deadline passed, now in interviews.</li>
+    </ul>
+
+    <h4>People, Capacity & Financial Sustainability</h4>
+    <ul>
+      <li><strong>Experiment #5 - Capacity stewardship standards:</strong> Mapping process flows for free capacity scenarios. Distinguishing 'Builders' (pathway/mission developers) vs 'Producers' (project deliverers) with different policy flows. Core funding reserve proposals in development.</li>
+      <li><strong>Experiment #17 - Mandatory financial health practices:</strong> Recording time a month ahead proposal. Team meeting held 1 April to explore new flows.</li>
+    </ul>
+
+    <h4>Mission, Strategy & External Engagement</h4>
+    <ul>
+      <li><strong>Experiment #9 - Civilization Options Fund (COF):</strong> Early investor conversations began. More inbound interest than the team can handle. Madrid pilot started. AI-driven learning system prototype in place.</li>
+      <li><strong>Experiment #15 - 10x100 Sensemaking:</strong> First strategy session used 'Spread vs. Focus' frame. Teams contributed reflections on binary tensions in our work. Second iteration of the same session on April 30.</li>
+    </ul>
+
+    <h4>Culture, Learning & Knowledge Transfer</h4>
+    <ul>
+      <li><strong>Experiment #6 - DM Constitution rework:</strong> Restructuring around collective conditions and individual commitments. Five dedicated sessions per principle in April. Target: collective review and signing at October gathering.</li>
+      <li><strong>Experiment #7 - Peer review & DM standards:</strong> Multiple workstreams running — Calvin (style guide), Ana (licensing), Prateek (lineage/crediting), Gurden & Arianna (website scoring), Eunsoo (AI protocols).</li>
+      <li><strong>Experiment #13 - Learning & reflection practices:</strong> Vision: dashboard visualizing reflections, learnings, unfunded work alongside time recording. Target: something visible by the end of April.</li>
+      <li><strong>Experiment #14 - Clean Language Practice:</strong> Multiple sessions completed with Caitlin Walker. About 1/3 of organizations have basic knowledge. Regular practice group planned.</li>
+    </ul>
+
+    <p style="margin-top: 24px;"><strong>Cross-cutting themes emerging:</strong> Financial sustainability needs cross-experiment coordination. The 'Builders vs Producers' distinction has structural implications for capacity policy, people flows, and funding models. Engagement remains uneven across the organization.</p>
+
+    <p style="margin-top: 16px;"><strong>Resources:</strong> 
+    <a href="https://www.notion.so/33d190f347a280a5a081e7e85aab6051" style="color: var(--warm-yellow);">GGC March Learnings (Notion)</a> | 
+    <a href="https://miro.com/app/board/uXjVJRqkl1s=/?moveToWidget=3458764665734804197&cot=14" style="color: var(--warm-yellow);">Miro Learning Canvas</a> | 
+    <a href="https://ggc-baseline-survey.netlify.app/" style="color: var(--warm-yellow);">Baseline Survey Results</a> | 
+    <a href="https://www.notion.so/2a0190f347a2805eb0cfc725333b31cd" style="color: var(--warm-yellow);">Governance Gap Committee Project Page</a></p>
+
+    <p style="margin-top: 16px;"><strong>Key dates for 2026:</strong> Quarterly 2 (21 May), Quarterly 3 (19 August), Annual Gathering (12-16 October), Quarterly 4 (19 November)</p>
+  </div>
+</div>
+
+<!-- HIRING -->
+<div class="section-card">
+  <span class="section-label">We're Hiring</span>
+  <h2>We currently have one live role. Please share with your networks:</h2>
+  <ul>
+    <li><a href="https://darkmatterlabs.notion.site/technicalproductarchitect"><strong>Technical Product Architect</strong></a> (South Korea)</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- PROJECT HIGHLIGHTS -->
+<div class="section-card">
+  <span class="section-label">Project Highlights</span>
+  <h2>What We're Building</h2>
+
+  <h3>Lund 2035: Evidence-Based Futures Exhibition 🇸🇪</h3>
+  <p><strong>Just launched this week!</strong> Meggan, Maria, Anette, and Alex delivered a physical exhibition at Lund City Hall exploring six radical "What if" scenarios for climate-neutral Lund by 2030.</p>
+  
+  <p><strong>The six scenarios:</strong></p>
+  <ul>
+    <li>What if sharing and reuse was the norm? (consumption)</li>
+    <li>What if the majority of public spaces were green areas? (carbon sinks)</li>
+    <li>What if Lund renovated instead of building new? (construction)</li>
+    <li>What if all children could get to school without their parents? (mobility)</li>
+    <li>What if all neighbourhoods were energy-positive? (energy)</li>
+    <li>What if all agricultural land was farmed regeneratively? (agriculture)</li>
+  </ul>
+
+  <div class="pull-quote">
+    <p>"Assumptions are almost always wrong until you look. I came in thinking the retrofit was cheaper than the new build. More complicated than that. Following evidence when it contradicts your frame is where the interesting work happens."</p>
+  </div>
+
+  <p><a href="https://miro.com/app/board/uXjVGjGHwoU=/?share_link_id=252205165477">Explore the Miro board</a> | Team: Meggan, Maria, Anette, Alex H</p>
+
+  <h3>medulla: A Berlin Base for Demonstrating Resilience</h3>
+  <p>DM and nextlearning e.V. signed a Memorandum of Understanding on 3 March 2026, launching Phase 1 of medulla — a Berlin-based demonstration project for resilience. This partnership creates a tangible space for testing and demonstrating systems change work.</p>
+
+  <h3>Madrid Cooling Coalition</h3>
+  <p>Planning a collective crowdsourcing session for the week of April 20th to map "systemic response to extreme temperatures" in Madrid. Framed as a "heat resilience" initiative, this project brings together stakeholders to address urban cooling challenges.</p>
+
+  <h3>Finnish Cities Policy Innovation Lab</h3>
+  <p>New work emerging on stakeholder stress-testing of policy mixes for Finnish cities, exploring how different policy combinations interact and impact various stakeholders.</p>
+  <p><strong>Project lead:</strong> Tom Beresford</p>
+
+  <h3>MOBILITIES4EU</h3>
+  <p>A major new project exploring mobility transformations across Europe. Work is underway with details to be shared in coming weeks.</p>
+</div>
+
+<hr class="divider">
+
+<!-- CIVIC TECH STUDIO -->
+<div class="section-card">
+  <span class="section-label">Civic Tech Studio Updates</span>
+  <h2>Innovation in Action</h2>
+
+  <h3>New Knowledge Organization Tool Demo</h3>
+  <p>Gurden shared a <a href="https://www.loom.com/share/fc521fffd2f34f358b1e7f3b18f1b1c3">demo</a> of a new graph-based knowledge organization system for DM's learnings. The tool uses AI to create visual knowledge networks, making it easier to surface connections and insights across projects.</p>
+  <p><strong>Status:</strong> Currently being tested for COF. Eunsoo expressed interest in trialing it as a double-use case for the GGC work.</p>
+  <p>The tool was entirely AI-coded and demonstrates the potential for generative AI in civic tech infrastructure.</p>
+
+  <h3>Google Impact Challenge — AI for Government Innovation</h3>
+  <p>Eunji is leading DM's submission for the Google Impact Challenge focused on AI for government innovation. The application is in progress, and team input is welcome.</p>
+
+  <h3>Weekly Civic Tech Calls Continue</h3>
+  <p>Join us <strong>Wednesdays, 10-11am UK time</strong> for demos, discussions, and troubleshooting. Recent sessions have covered AI tools, generative interfaces, and civic tech design patterns.</p>
+  <p>More at: <a href="https://civictech.darkmatterlabs.org/">civictech.darkmatterlabs.org</a></p>
+</div>
+
+<hr class="divider">
+
+<!-- TEAM MOMENTS -->
+<div class="section-card">
+  <span class="section-label">Team Moments</span>
+  <h2>Celebrating Together</h2>
+
+  <div class="celebration-list">
+    <h3>April Celebrations 🎉</h3>
+    <p><strong>Work Anniversaries:</strong></p>
+    <ul>
+      <li>Metadel - 2 years (15 April)</li>
+      <li>Rob - 3 years (10 April)</li>
+      <li>Ana - 1 year (9 April)</li>
+      <li>Alex - 2 years (4 April)</li>
+      <li>Jack - 8 years (1 April)</li>
+      <li>Nathalia - 2 years (1 April)</li>
+    </ul>
+  </div>
+
+  <h3>Congratulations to Our Hungarian Friends</h3>
+  <p>Massive congratulations to Gyorgyi and Anna! We celebrate the recent election news with our Hungarian friends, with flags flying high across Slack.</p>
+
+  <h3>DM Rendezvous in Hong Kong</h3>
+  <p>Eunsoo and Calvin met up in Hong Kong, continuing our tradition of connecting across continents. More European meet-ups requested — Simon is calling for a Berlin gathering!</p>
+
+  <h3>DM Style Guide in Development</h3>
+  <p>As part of GGC Experiment #7, Calvin and team are drafting a DM Style Guide to ensure high and consistent quality across our writing, complementing the Authorship and Peer Review protocols.</p>
+  <p><strong>Action needed:</strong> Please take 5 minutes to share your thoughts on DM's writing and target audiences in the Miro board.</p>
+</div>
+
+<hr class="divider">
+
+<!-- LOOKING AHEAD -->
+<div class="section-card">
+  <span class="section-label">Looking Ahead</span>
+  <h2>What's Next</h2>
+
+  <h3>Q1 Transfer Pricing</h3>
+  <p>Andrea needs everyone's Streamtime updated through the end of March for Q1 transfer pricing. This is especially important for reallocating income and expenditure between entities. Please ensure completion if you haven't already.</p>
+
+  <h3>Upcoming Events</h3>
+  <ul>
+    <li>Madrid heat resilience crowdsourcing (week of April 20)</li>
+    <li>Quarterly 2 (21 May)</li>
+    <li>XO Copenhagen next steps scenarios (Ivana returns 20 April)</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- BINGO GAME -->
+<div class="bingo-section">
+  <h2>🎲 Q2 DM Bingo 🎲</h2>
+  <p class="bingo-intro"><strong>NEW GAME!</strong> Since you loved the Easter word search, here's a Q2 Bingo card! Mark off squares as they happen between now and the end of June. First to get 5 in a row wins... bragging rights (and maybe a coffee from Indy).</p>
+
+  <table class="bingo-table">
+    <tr>
+      <td>Someone uses #addtonewsletter</td>
+      <td>Stewards role nominations open</td>
+      <td>COF closes first investment</td>
+      <td>Learning dashboard goes live</td>
+      <td>Someone demo's at Civic Tech</td>
+    </tr>
+    <tr>
+      <td>Madrid heat resilience session happens</td>
+      <td>DM Style Guide v1 published</td>
+      <td>New role hire announced</td>
+      <td class="free-space">FREE SPACE!</td>
+      <td>Someone shares in #org-hq</td>
+    </tr>
+    <tr>
+      <td>Clean Language practice group starts</td>
+      <td>Quarterly 2 gathering (21 May)</td>
+      <td>A DM meet-up happens somewhere</td>
+      <td>Constitution session completed</td>
+      <td>Lund exhibition gets press coverage</td>
+    </tr>
+    <tr>
+      <td>medulla Berlin milestone reached</td>
+      <td>Someone tries the knowledge graph tool</td>
+      <td>100% Streamtime completion week!</td>
+      <td>Health Keepers onboard Jorn & Prateek</td>
+      <td>MOBILITIES4EU details revealed</td>
+    </tr>
+    <tr>
+      <td>10x100 session #2</td>
+      <td>Someone shares learnings on Notion</td>
+      <td>Google Impact Challenge update</td>
+      <td>Jorn or Prateek shares first HK reflection</td>
+      <td>Someone gets BINGO!</td>
+    </tr>
+  </table>
+
+  <p class="bingo-instructions"><strong>How to play:</strong> Print this out, share with colleagues, and mark off squares as events happen. Tag your BINGO in #org-announcements when you get five in a row!</p>
+</div>
+
+<hr class="divider">
+
+<!-- CLOSING -->
+<div class="section-card">
+  <div class="highlight-box">
+    <p><strong>Remember:</strong> Use <strong>#addtonewsletter</strong> in Slack to flag content for our next edition!</p>
+  </div>
+  <p>Questions? Feedback? Drop a note in <strong>#org-announcements</strong>.</p>
+  <p style="font-style: italic; margin-top: 20px;">Here's to staying connected,<br><strong>The DM Dispatch Team</strong></p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>The DM Dispatch</strong>
+  <p>Issue #2 — April 2026 — Dark Matter Labs</p>
+  <p class="footer-meta" style="margin-top: 20px;">
+    <a href="/ style="color: var(--warm-yellow);">← Back to Archive</a>
+  </p>
+</footer>
+
+</body>
+</html>
