@@ -30,7 +30,6 @@
     line-height: 1.7;
   }
 
-  /* Header */
   .masthead {
     background: var(--dark);
     color: var(--cream);
@@ -99,7 +98,6 @@
     text-transform: uppercase;
   }
 
-  /* Back link */
   .back-link {
     display: block;
     max-width: 860px;
@@ -119,14 +117,12 @@
     text-decoration: underline;
   }
 
-  /* Layout */
   .container {
     max-width: 860px;
     margin: 0 auto;
     padding: 0 32px;
   }
 
-  /* Section headings */
   .section-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -137,7 +133,6 @@
     display: block;
   }
 
-  /* Welcome */
   .welcome-block {
     padding: 56px 32px;
     max-width: 860px;
@@ -170,7 +165,20 @@
     margin-bottom: 0;
   }
 
-  /* Full-bleed divider sections */
+  .update-badge {
+    background: var(--spring-green);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    margin-left: 10px;
+  }
+
   .full-bleed {
     background: var(--dark);
     color: var(--cream);
@@ -243,7 +251,6 @@
     color: var(--warm-yellow);
   }
 
-  /* Section cards */
   .section-card {
     padding: 56px 32px;
     max-width: 860px;
@@ -279,7 +286,6 @@
     margin-bottom: 10px;
   }
 
-  /* Pull quote */
   .pull-quote {
     border-left: 4px solid var(--warm-yellow);
     padding: 16px 0 16px 24px;
@@ -294,7 +300,6 @@
     line-height: 1.4;
   }
 
-  /* Celebrations */
   .celebration-list {
     background: var(--pale-yellow);
     border-left: 4px solid var(--warm-yellow);
@@ -326,7 +331,6 @@
     left: 0;
   }
 
-  /* Bingo table */
   .bingo-section {
     padding: 56px 32px;
     max-width: 860px;
@@ -379,7 +383,6 @@
     margin-top: 24px;
   }
 
-  /* Links */
   a {
     color: var(--spring-green);
     text-decoration: none;
@@ -389,7 +392,6 @@
     text-decoration: underline;
   }
 
-  /* Divider */
   .divider {
     border: none;
     border-top: 1px solid rgba(0,0,0,0.08);
@@ -397,7 +399,6 @@
     margin: 40px auto;
   }
 
-  /* Footer */
   footer {
     background: var(--dark);
     color: rgba(255,255,255,0.5);
@@ -423,7 +424,6 @@
     text-transform: uppercase;
   }
 
-  /* Responsive */
   @media (max-width: 768px) {
     .masthead-meta {
       flex-direction: column;
@@ -439,7 +439,6 @@
 </head>
 <body>
 
-<!-- MASTHEAD -->
 <header class="masthead">
   <div class="masthead-top-bar">
     ISSUE #2 &nbsp; • &nbsp; APRIL 2026 &nbsp; • &nbsp; #ADDTONEWSLETTER FEATURE LAUNCHES
@@ -462,7 +461,6 @@
   <a href="/dm-newsletter/">← Back to Archive</a>
 </div>
 
-<!-- WELCOME -->
 <div class="welcome-block">
   <span class="section-label">Welcome Back</span>
   <h2>Hello team,</h2>
@@ -475,7 +473,6 @@
 
 <hr class="divider">
 
-<!-- GGC EXPERIMENTS -->
 <div class="full-bleed">
   <div class="full-bleed-inner">
     <span class="section-label">Key Organizational Updates</span>
@@ -496,13 +493,13 @@
     <ul>
       <li><strong>Experiment #1 - Stewards as new formal roles:</strong> Multiple draft versions shared for wide consultation. Roles must serve four functions: steering mission, building pathways/revenue, operational tending, and team mentoring.</li>
       <li><strong>Experiment #2 - Handover from informal stewards:</strong> Transition Manifesto shared. Issues redirecting to Health Keepers. Pathway exists for Annette to refocus on project work.</li>
-      <li><strong>Experiment #11 - Health Keepers Circle expansion:</strong> Operating under expanded responsibilities for 1.5 months. Jordan departed; Jorn and Prateek joined. Midway kick-off/onboarding planned April-June.</li>
+      <li><strong>Experiment #11 - Health Keepers Circle expansion <span class="update-badge">Updated</span>:</strong> Operating under expanded responsibilities for 1.5 months. Jorn and Prateek have now been fully onboarded as new Health Keepers. Midway check-in scheduled for May.</li>
       <li><strong>Experiment #12 - Change Orchestrator (CO):</strong> Role description drafted, moved to internal hiring. Application deadline passed, now in interviews.</li>
     </ul>
 
     <h4>People, Capacity & Financial Sustainability</h4>
     <ul>
-      <li><strong>Experiment #5 - Capacity stewardship standards:</strong> Mapping process flows for free capacity scenarios. Distinguishing 'Builders' (pathway/mission developers) vs 'Producers' (project deliverers) with different policy flows. Core funding reserve proposals in development.</li>
+      <li><strong>Experiment #5 - Capacity stewardship standards <span class="update-badge">Growth Pot</span>:</strong> Mapping process flows for free capacity scenarios. Distinguishing 'Builders' (pathway/mission developers) vs 'Producers' (project deliverers) with different policy flows. Core funding reserve proposals in development. <strong>RiskSense has been selected as the first Growth Pot recipient</strong> — serving as guinea pig for the process and helping us refine the investment vehicle as we go.</li>
       <li><strong>Experiment #17 - Mandatory financial health practices:</strong> Recording time a month ahead proposal. Team meeting held 1 April to explore new flows.</li>
     </ul>
 
@@ -515,7 +512,7 @@
     <h4>Culture, Learning & Knowledge Transfer</h4>
     <ul>
       <li><strong>Experiment #6 - DM Constitution rework:</strong> Restructuring around collective conditions and individual commitments. Five dedicated sessions per principle in April. Target: collective review and signing at October gathering.</li>
-      <li><strong>Experiment #7 - Peer review & DM standards:</strong> Multiple workstreams running — Calvin (style guide), Ana (licensing), Prateek (lineage/crediting), Gurden & Arianna (website scoring), Eunsoo (AI protocols).</li>
+      <li><strong>Experiment #7 - Peer review & DM standards <span class="update-badge">Complete!</span>:</strong> Multiple workstreams have come together to complete the <strong>Attribution Guide</strong>, which is now live for review. The guide offers practical suggestions on how to credit multiple types of contributors beyond primary authors/producers. Style/Standards and Publishing guides to be finalized next month. New <strong>#help-publishing</strong> channel launched for questions and concerns. Team includes: Calvin (style guide), Ana (licensing), Prateek (lineage/crediting), Gurden & Arianna (website scoring), Eunsoo (AI protocols). <a href="https://docs.google.com/document/d/1JUhRthrA0BtIxsZhU9hMqOi-8LEf5pTYj6KFx5uFG74/edit?tab=t.xflcpdqsyhs4" style="color: var(--warm-yellow);">Read the Attribution Guide here</a>.</li>
       <li><strong>Experiment #13 - Learning & reflection practices:</strong> Vision: dashboard visualizing reflections, learnings, unfunded work alongside time recording. Target: something visible by the end of April.</li>
       <li><strong>Experiment #14 - Clean Language Practice:</strong> Multiple sessions completed with Caitlin Walker. About 1/3 of organizations have basic knowledge. Regular practice group planned.</li>
     </ul>
@@ -532,7 +529,6 @@
   </div>
 </div>
 
-<!-- HIRING -->
 <div class="section-card">
   <span class="section-label">We're Hiring</span>
   <h2>We currently have one live role. Please share with your networks:</h2>
@@ -543,7 +539,6 @@
 
 <hr class="divider">
 
-<!-- PROJECT HIGHLIGHTS -->
 <div class="section-card">
   <span class="section-label">Project Highlights</span>
   <h2>What We're Building</h2>
@@ -583,7 +578,6 @@
 
 <hr class="divider">
 
-<!-- CIVIC TECH STUDIO -->
 <div class="section-card">
   <span class="section-label">Civic Tech Studio Updates</span>
   <h2>Innovation in Action</h2>
@@ -603,7 +597,6 @@
 
 <hr class="divider">
 
-<!-- TEAM MOMENTS -->
 <div class="section-card">
   <span class="section-label">Team Moments</span>
   <h2>Celebrating Together</h2>
@@ -634,7 +627,6 @@
 
 <hr class="divider">
 
-<!-- LOOKING AHEAD -->
 <div class="section-card">
   <span class="section-label">Looking Ahead</span>
   <h2>What's Next</h2>
@@ -652,7 +644,6 @@
 
 <hr class="divider">
 
-<!-- BINGO GAME -->
 <div class="bingo-section">
   <h2>🎲 Q2 DM Bingo 🎲</h2>
   <p class="bingo-intro"><strong>NEW GAME!</strong> Since you loved the Easter word search, here's a Q2 Bingo card! Mark off squares as they happen between now and the end of June. First to get 5 in a row wins... bragging rights (and maybe a coffee from Indy).</p>
@@ -683,7 +674,7 @@
       <td>medulla Berlin milestone reached</td>
       <td>Someone tries the knowledge graph tool</td>
       <td>100% Streamtime completion week!</td>
-      <td>Health Keepers onboard Jorn & Prateek</td>
+      <td>Health Keepers onboard Jorn & Prateek ✓</td>
       <td>MOBILITIES4EU details revealed</td>
     </tr>
     <tr>
@@ -700,7 +691,6 @@
 
 <hr class="divider">
 
-<!-- CLOSING -->
 <div class="section-card">
   <div class="highlight-box">
     <p><strong>Remember:</strong> Use <strong>#addtonewsletter</strong> in Slack to flag content for our next edition!</p>
@@ -709,7 +699,6 @@
   <p style="font-style: italic; margin-top: 20px;">Here's to staying connected,<br><strong>The DM Dispatch Team</strong></p>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <strong>The DM Dispatch</strong>
   <p>Issue #2 — April 2026 — Dark Matter Labs</p>
