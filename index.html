@@ -4,215 +4,154 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>The DM Dispatch Archive</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>The Dm Dispatch — Archive</title>
 <style>
+  @font-face {
+    font-family: 'SaansRegular';
+    src: url('https://dm-style-guide.vercel.app/assets/fonts/SaansRegular.woff2') format('woff2');
+    font-weight: 400; font-display: swap;
+  }
+  @font-face {
+    font-family: 'SaansMedium';
+    src: url('https://dm-style-guide.vercel.app/assets/fonts/SaansMedium.woff2') format('woff2');
+    font-weight: 500; font-display: swap;
+  }
   :root {
-    --cream: #fdf6e8;
-    --warm-yellow: #f5c842;
-    --pale-yellow: #fdf0b0;
-    --spring-green: #4a7c59;
-    --pale-green: #d4e8d8;
-    --dark: #1a1a1a;
-    --mid: #4a4a4a;
-    --light-mid: #888;
+    --canvas: #111112;
+    --surface-raised: #252424;
+    --border-default: #333333;
+    --border-subtle: #353535;
+    --text-primary: #ffffff;
+    --text-secondary: #a8a8a8;
+    --text-tertiary: #7d7d7d;
+    --text-muted: #585858;
+    --accent-lavender: #a28cc6;
+    --accent-periwinkle: #737ea5;
+    --font-regular: 'SaansRegular', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-medium: 'SaansMedium', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --ease: 0.3s ease-in-out;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
+  ::selection { background: var(--accent-lavender); color: var(--canvas); }
+  html { scroll-behavior: smooth; }
   body {
-    background-color: var(--cream);
-    font-family: 'DM Sans', sans-serif;
-    color: var(--dark);
-    line-height: 1.7;
+    background: var(--canvas); color: var(--text-primary);
+    font-family: var(--font-regular); font-size: 16px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
   }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--accent-lavender); text-decoration: none; transition: color var(--ease); }
+  a:hover { color: var(--text-primary); }
 
-  .masthead {
-    background: var(--dark);
-    color: var(--cream);
-    padding: 0;
-    position: relative;
+  .masthead { border-bottom: 1px solid var(--border-default); padding: 56px 0 44px; text-align: center; }
+  .masthead-logo { display: flex; justify-content: center; margin-bottom: 28px; }
+  .masthead-title {
+    font-weight: 400; font-size: clamp(44px, 8vw, 80px); line-height: 0.98;
+    letter-spacing: -0.03em; margin-bottom: 18px;
   }
+  .masthead-sub { color: var(--text-secondary); font-size: 18px; }
 
-  .masthead-inner {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 60px 32px 40px;
-    text-align: center;
-  }
+  .intro { padding: 48px 0 8px; }
+  .intro p { color: var(--text-secondary); }
 
-  .masthead h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(52px, 8vw, 96px);
-    font-weight: 900;
-    line-height: 0.9;
-    letter-spacing: -2px;
-    color: var(--cream);
-  }
-
-  .masthead h1 span {
-    color: var(--warm-yellow);
-  }
-
-  .masthead-sub {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--light-mid);
-    margin-top: 20px;
-  }
-
-  .container {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 60px 32px;
-  }
-
-  .intro {
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: 16px;
-    color: var(--mid);
-  }
-
-  .newsletter-list {
-    list-style: none;
-  }
-
-  .newsletter-item {
-    background: white;
-    border-radius: 12px;
-    padding: 32px;
-    margin-bottom: 24px;
-    border: 1px solid rgba(0,0,0,0.06);
-    transition: all 0.3s ease;
-  }
-
-  .newsletter-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  }
-
-  .newsletter-item a {
-    text-decoration: none;
-    color: inherit;
+  .list { padding: 24px 0 64px; }
+  .item {
     display: block;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 30px 30px;
+    margin-bottom: 18px;
+    transition: border-color var(--ease), transform var(--ease);
   }
+  .item:hover { border-color: var(--accent-periwinkle); transform: translateY(-2px); }
+  .item .date {
+    font-family: var(--font-medium); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent-periwinkle); margin-bottom: 10px;
+  }
+  .item h2 {
+    font-weight: 400; font-size: 28px; line-height: 1.1; letter-spacing: -0.02em;
+    color: var(--text-primary); margin-bottom: 10px;
+  }
+  .item .badge {
+    display: inline-block; vertical-align: middle;
+    background: var(--accent-lavender); color: var(--canvas);
+    font-family: var(--font-medium); font-size: 10px; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 20px; margin-left: 10px;
+  }
+  .item p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
 
-  .newsletter-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--spring-green);
-    margin-bottom: 10px;
+  footer.site {
+    border-top: 1px solid var(--border-default);
+    padding: 48px 0; text-align: center;
+    box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
   }
-
-  .newsletter-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 12px;
+  footer.site .mark { display: flex; justify-content: center; margin-bottom: 16px; }
+  footer.site p {
+    color: var(--text-muted); font-family: var(--font-medium); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;
   }
-
-  .newsletter-excerpt {
-    font-size: 15px;
-    color: var(--mid);
-    line-height: 1.7;
-  }
-
-  .badge {
-    display: inline-block;
-    background: var(--warm-yellow);
-    color: var(--dark);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    margin-left: 12px;
-    text-transform: uppercase;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.1em;
-  }
-
-  footer {
-    background: var(--dark);
-    color: rgba(255,255,255,0.5);
-    padding: 40px 32px;
-    text-align: center;
-    font-size: 13px;
-    font-family: 'DM Mono', monospace;
-  }
-
-  footer strong {
-    color: var(--warm-yellow);
-    display: block;
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-style: italic;
-    margin-bottom: 8px;
-  }
-
-  @media (max-width: 768px) {
-    .newsletter-item {
-      padding: 24px;
-    }
-  }
+  footer.site a { color: var(--accent-periwinkle); }
 </style>
 </head>
 <body>
 
 <header class="masthead">
-  <div class="masthead-inner">
-    <h1>The <span>DM</span><br>Dispatch</h1>
-    <p class="masthead-sub">Your Monthly Pulse on Dark Matter Labs</p>
+  <div class="wrap">
+    <div class="masthead-logo">
+      <svg width="240" height="40" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dark Matter Labs">
+        <rect x="0" y="0" width="40" height="40" rx="2" fill="#ffffff"/>
+        <text x="8" y="29" font-family="'SaansMedium', system-ui, sans-serif" font-size="20" font-weight="500" fill="#111112">Dm</text>
+        <text x="30.5" y="12" font-family="'SaansMedium', system-ui, sans-serif" font-size="7" font-weight="500" fill="#111112">04</text>
+        <text x="54" y="27" font-family="'SaansRegular', system-ui, sans-serif" font-size="19" fill="#ffffff" letter-spacing="-0.3">Dark Matter Labs</text>
+      </svg>
+    </div>
+    <h1 class="masthead-title">The Dm Dispatch</h1>
+    <p class="masthead-sub">Your monthly pulse on Dark Matter Labs</p>
   </div>
 </header>
 
-<div class="container">
+<div class="wrap">
   <div class="intro">
-    <p>Welcome to the DM Dispatch archive. Our internal newsletter keeping the team connected across continents, projects, and time zones.</p>
+    <p>The archive of the Dm Dispatch — keeping the team connected across continents, projects and time zones.</p>
   </div>
 
-  <ul class="newsletter-list">
-    <li class="newsletter-item">
-      <a href="/dm-newsletter/dispatch3">
-        <div class="newsletter-date">May 2026</div>
-        <h2 class="newsletter-title">Issue #3 <span class="badge">Latest</span></h2>
-        <p class="newsletter-excerpt">
-          GGC April learnings • Dm Stewards nominations (39!) • Prix Ars Electronica Honorary Mention 🏆 • Rob's retirement & welcoming Sungwon • medulla activation • CTL Pop-up Girona • First DM Open Hours
-        </p>
-      </a>
-    </li>
-
-    <li class="newsletter-item">
-      <a href="/dm-newsletter/dispatch2">
-        <div class="newsletter-date">April 2026</div>
-        <h2 class="newsletter-title">Issue #2</h2>
-        <p class="newsletter-excerpt">
-          First full month of GGC experiments • Lund 2035 exhibition launch • Q2 Bingo game • April celebrations • New #addtonewsletter feature
-        </p>
-      </a>
-    </li>
-
-    <li class="newsletter-item">
-      <a href="/dm-newsletter/dispatch1">
-        <div class="newsletter-date">March 2026</div>
-        <h2 class="newsletter-title">Issue #1 — Easter Edition 🐣</h2>
-        <p class="newsletter-excerpt">
-          The newsletter that actually got sent • Easter egg hunt • 17 governance experiments launched • Growth Pot introduced • Planetary Civics arc closes
-        </p>
-      </a>
-    </li>
-  </ul>
+  <div class="list">
+    <a class="item" href="/dm-newsletter/dispatch4">
+      <div class="date">June 2026</div>
+      <h2>Issue #4 <span class="badge">Latest</span></h2>
+      <p>Eunsoo becomes Dm's first Change Orchestrator · the GGC review begins · four publishing guides finalised · a shared language for how we work together · 60 in Sheffield for Many-to-Many · medulla opens in Berlin · xCO at the World Bank · Laudes &amp; Homes England funding news · summer, and the heat we're working on ☀️</p>
+    </a>
+    <a class="item" href="/dm-newsletter/dispatch3">
+      <div class="date">May 2026</div>
+      <h2>Issue #3</h2>
+      <p>GGC April synthesis · Dm Stewards (39 nominations) · Prix Ars Electronica Honorary Mention · Rob's retirement &amp; four new joiners · medulla activation · CTL Girona pop-up · second Dm Open Hours</p>
+    </a>
+    <a class="item" href="/dm-newsletter/dispatch2">
+      <div class="date">April 2026</div>
+      <h2>Issue #2</h2>
+      <p>First full month of GGC experiments · Lund 2035 exhibition · Health Keepers expanded · Attribution Guide · RiskSense as first Growth Pot recipient</p>
+    </a>
+    <a class="item" href="/dm-newsletter/dispatch1">
+      <div class="date">March 2026</div>
+      <h2>Issue #1 — Easter Edition 🐣</h2>
+      <p>The newsletter that actually got sent · Easter egg hunt · 17 governance experiments launched · Growth Pot introduced · Planetary Civics arc closes</p>
+    </a>
+  </div>
 </div>
 
-<footer>
-  <strong>The DM Dispatch</strong>
-  <p>Dark Matter Labs Internal Newsletter</p>
-  <p style="margin-top: 16px;">Questions? Feedback? Drop a note in <strong>#org-announcements</strong></p>
+<footer class="site">
+  <div class="wrap">
+    <div class="mark">
+      <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dark Matter Labs">
+        <rect x="0" y="0" width="40" height="40" rx="2" fill="#ffffff"/>
+        <text x="8" y="29" font-family="'SaansMedium', system-ui, sans-serif" font-size="20" font-weight="500" fill="#111112">Dm</text>
+        <text x="30.5" y="12" font-family="'SaansMedium', system-ui, sans-serif" font-size="7" font-weight="500" fill="#111112">04</text>
+      </svg>
+    </div>
+    <p>Dark Matter Labs Internal Newsletter</p>
+    <p>Questions? Drop a note in #org-announcements</p>
+  </div>
 </footer>
 
 </body>
