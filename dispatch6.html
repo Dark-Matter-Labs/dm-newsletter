@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The Dm Dispatch — August 2026 — Issue #6</title>
+<style>
+  /* ─── Saans typeface (Dm brand face) ─────────────────────────── */
+  @font-face {
+    font-family: 'SaansRegular';
+    src: url('https://dm-style-guide.vercel.app/assets/fonts/SaansRegular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'SaansMedium';
+    src: url('https://dm-style-guide.vercel.app/assets/fonts/SaansMedium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+  }
+
+  /* ─── Design tokens ──────────────────────────────────────────── */
+  :root {
+    --canvas: #111112;
+    --paper: #ffffff;
+    --surface-raised: #252424;
+    --surface-overlay: #212121;
+    --surface-elevated: #292929;
+    --border-default: #333333;
+    --border-subtle: #353535;
+    --text-primary: #ffffff;
+    --text-secondary: #a8a8a8;
+    --text-tertiary: #7d7d7d;
+    --text-muted: #585858;
+    --accent-lavender: #a28cc6;
+    --accent-periwinkle: #737ea5;
+
+    --font-regular: 'SaansRegular', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-medium: 'SaansMedium', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    --container: 1200px;
+    --ease: 0.3s ease-in-out;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  ::selection { background: var(--accent-lavender); color: var(--canvas); }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--canvas);
+    color: var(--text-primary);
+    font-family: var(--font-regular);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  a { color: var(--accent-lavender); text-decoration: none; transition: color var(--ease); }
+  a:hover { color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ─── Masthead ───────────────────────────────────────────────── */
+  .masthead { border-bottom: 1px solid var(--border-default); padding: 40px 0 0; }
+  .masthead-bar {
+    font-family: var(--font-medium);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-periwinkle);
+    text-align: center;
+    padding-bottom: 40px;
+  }
+  .masthead-logo { display: flex; justify-content: center; margin-bottom: 28px; }
+  .masthead-title {
+    font-family: var(--font-regular);
+    font-weight: 400;
+    font-size: clamp(48px, 9vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .masthead-sub { text-align: center; color: var(--text-secondary); font-size: 18px; margin-bottom: 36px; }
+  .masthead-meta {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    border-top: 1px solid var(--border-subtle); padding: 16px 0;
+    font-family: var(--font-medium); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-tertiary);
+  }
+
+  .backlink { padding: 24px 0 0; font-size: 13px; font-family: var(--font-medium); letter-spacing: 0.04em; }
+
+  /* ─── Section rhythm ─────────────────────────────────────────── */
+  section { padding: 56px 0; border-bottom: 1px solid var(--border-default); }
+  section:last-of-type { border-bottom: none; }
+
+  .eyebrow {
+    font-family: var(--font-medium); font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent-periwinkle);
+    display: block; margin-bottom: 16px;
+  }
+
+  h1.section-title {
+    font-family: var(--font-regular); font-weight: 400;
+    font-size: clamp(28px, 4.5vw, 40px); line-height: 1.12;
+    letter-spacing: -0.02em; margin-bottom: 24px;
+  }
+
+  h2.sub {
+    font-family: var(--font-medium); font-weight: 500; font-size: 22px;
+    line-height: 1.25; letter-spacing: -0.01em; margin: 40px 0 12px;
+    color: var(--text-primary);
+  }
+
+  h3.subsub {
+    font-family: var(--font-medium); font-weight: 500; font-size: 15px;
+    letter-spacing: 0.02em; margin: 28px 0 10px; color: var(--text-primary);
+  }
+
+  p { color: var(--text-secondary); margin-bottom: 16px; }
+  p strong { color: var(--text-primary); font-family: var(--font-medium); font-weight: 500; }
+
+  ul.body-list { list-style: none; margin: 16px 0; }
+  ul.body-list li {
+    color: var(--text-secondary); padding-left: 22px; position: relative;
+    margin-bottom: 12px; line-height: 1.6;
+  }
+  ul.body-list li::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 5px; height: 5px; background: var(--accent-periwinkle); border-radius: 50%;
+  }
+  ul.body-list li strong { color: var(--text-primary); font-family: var(--font-medium); font-weight: 500; }
+
+  .credit {
+    font-family: var(--font-medium); font-size: 12px; letter-spacing: 0.03em;
+    color: var(--text-muted); margin-top: 14px; display: block; line-height: 1.6;
+  }
+  .credit a { color: var(--accent-periwinkle); }
+
+  /* ─── Callout card ───────────────────────────────────────────── */
+  .card {
+    background: var(--surface-raised); border: 1px solid var(--border-subtle);
+    border-radius: 14px; padding: 24px 26px; margin: 28px 0;
+  }
+  .card .card-label {
+    font-family: var(--font-medium); font-size: 13px; color: var(--text-primary);
+    display: block; margin-bottom: 8px;
+  }
+  .card p { margin-bottom: 0; color: var(--text-secondary); }
+  .card.accent { border-left: 2px solid var(--accent-lavender); }
+
+  /* ─── Pull quote ─────────────────────────────────────────────── */
+  blockquote { border-left: 2px solid var(--accent-lavender); padding: 6px 0 6px 26px; margin: 28px 0; }
+  blockquote p {
+    font-size: 21px; line-height: 1.45; color: var(--text-primary);
+    font-family: var(--font-regular); margin-bottom: 10px;
+  }
+  blockquote cite {
+    font-style: normal; font-family: var(--font-medium); font-size: 12px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary);
+  }
+
+  /* ─── Two-column survey split ────────────────────────────────── */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 8px; }
+  .split .col { background: var(--surface-raised); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 20px 22px; }
+  .split .col h3 { font-family: var(--font-medium); font-weight: 500; font-size: 14px; color: var(--text-primary); margin: 0 0 12px; }
+  .split .col ul { list-style: none; }
+  .split .col li { color: var(--text-secondary); font-size: 14px; line-height: 1.5; margin-bottom: 10px; padding-left: 18px; position: relative; }
+  .split .col li::before { content: ""; position: absolute; left: 0; top: 9px; width: 4px; height: 4px; border-radius: 50%; }
+  .split .up li::before { background: #6fae7f; }
+  .split .down li::before { background: var(--accent-periwinkle); }
+
+  /* ─── Breakout list ──────────────────────────────────────────── */
+  .breakouts { list-style: none; margin: 20px 0; }
+  .breakouts li {
+    padding: 14px 0; border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary); line-height: 1.55;
+  }
+  .breakouts li:last-child { border-bottom: none; }
+  .breakouts li strong { color: var(--text-primary); font-family: var(--font-medium); font-weight: 500; }
+
+  /* ─── Rendez-vous ────────────────────────────────────────────── */
+  .rendezvous { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 24px; }
+  .rendezvous .rz {
+    background: var(--surface-raised); border: 1px solid var(--border-subtle);
+    border-radius: 12px; padding: 20px; transition: border-color var(--ease);
+  }
+  .rendezvous .rz:hover { border-color: var(--accent-periwinkle); }
+  .rendezvous .rz .flag { font-size: 22px; display: block; margin-bottom: 10px; }
+  .rendezvous .rz h4 { font-family: var(--font-medium); font-weight: 500; font-size: 14px; color: var(--text-primary); margin-bottom: 6px; }
+  .rendezvous .rz p { font-size: 13px; color: var(--text-secondary); margin-bottom: 0; line-height: 1.5; }
+
+  /* ─── Events list ────────────────────────────────────────────── */
+  .events { list-style: none; margin: 20px 0; }
+  .events li {
+    display: grid; grid-template-columns: 170px 1fr; gap: 18px;
+    padding: 14px 0; border-bottom: 1px solid var(--border-subtle);
+  }
+  .events li:last-child { border-bottom: none; }
+  .events .date {
+    font-family: var(--font-medium); font-size: 12px; letter-spacing: 0.05em;
+    color: var(--accent-periwinkle); text-transform: uppercase; padding-top: 2px;
+  }
+  .events .what { color: var(--text-secondary); }
+
+  /* ─── Reflective / hard-call section ─────────────────────────── */
+  .reflective { background: linear-gradient(160deg, #000 0%, var(--surface-elevated) 100%); }
+
+  /* ─── Sign-off / footer ──────────────────────────────────────── */
+  .signoff { padding: 56px 0; }
+  .signoff .sign-italic { color: var(--text-secondary); margin-bottom: 6px; }
+  .signoff .sign-team { font-family: var(--font-medium); color: var(--text-primary); font-size: 18px; }
+
+  footer.site {
+    background: var(--canvas); border-top: 1px solid var(--border-default);
+    padding: 48px 0; text-align: center;
+    box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+  }
+  footer.site .mark { display: flex; justify-content: center; margin-bottom: 18px; }
+  footer.site p {
+    color: var(--text-muted); font-family: var(--font-medium); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  footer.site a { color: var(--accent-periwinkle); }
+
+  /* ─── Responsive ─────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .split { grid-template-columns: 1fr; }
+    .events li { grid-template-columns: 1fr; gap: 4px; }
+    .masthead-meta { flex-direction: column; align-items: center; text-align: center; }
+    section { padding: 44px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ MASTHEAD ═══ -->
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-logo">
+      <svg width="240" height="40" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dark Matter Labs">
+        <rect x="0" y="0" width="40" height="40" rx="2" fill="#ffffff"/>
+        <text x="8" y="29" font-family="'SaansMedium', system-ui, sans-serif" font-size="20" font-weight="500" fill="#111112">Dm</text>
+        <text x="30.5" y="12" font-family="'SaansMedium', system-ui, sans-serif" font-size="7" font-weight="500" fill="#111112">06</text>
+        <text x="54" y="27" font-family="'SaansRegular', system-ui, sans-serif" font-size="19" fill="#ffffff" letter-spacing="-0.3">Dark Matter Labs</text>
+      </svg>
+    </div>
+    <div class="masthead-bar">Issue #6 &nbsp;·&nbsp; August / Early September 2026 &nbsp;·&nbsp; Dm's 10th Anniversary Year</div>
+  </div>
+  <div style="border-top:1px solid var(--border-subtle);">
+    <div class="wrap">
+      <h1 class="masthead-title">The Dm Dispatch</h1>
+      <p class="masthead-sub">Your monthly pulse on Dark Matter Labs</p>
+      <div class="masthead-meta">
+        <span>August 2026</span>
+        <span>Internal Newsletter</span>
+        <span>Issue #6</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="backlink"><a href="/dm-newsletter/">← Back to archive</a></div>
+</div>
+
+<!-- ═══ WELCOME ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Welcome back</span>
+    <h1 class="section-title">Hello team,</h1>
+    <p>August was the month the governance work stopped being a committee and became how we run. The first Dm Steward constellation is in place, the GGC has formally disbanded, the Change Orchestration cycle is live and the next cycle of hunches and experiments is already underway. The second baseline survey came back with an upward trend and a clear signal about what to work on next.</p>
+    <p>Elsewhere: twenty-four pathway builders spent three days together in the UK, the Civic Ledger team published what they learned in Berlin, and Camden is turning into a London-wide food bid. The October all-team gathering has been postponed to at least late Q1 (and we are all a little bit mourning not being in person together, whilst appreciating the proactive stance) which is worth reading Adam's note on properly.</p>
+    <p>And on 4 September, Rob retires. He spent his last week collaborating with Alizé, Sophia, Helen, Jason, Louise and Joost, who made a huge lift getting the EU audit submission over the line.</p>
+    <div class="card accent">
+      <span class="card-label">A note for contributors</span>
+      <p>Tag anything worth sharing with <strong>#addtonewsletter</strong> in any Slack channel and it will find its way into Issue #7.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MISSION PATHWAYS POP-UP ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Three days in the UK</span>
+    <h1 class="section-title">The Mission Pathways pop-up</h1>
+    <p>In the last week of August, everyone at Dm with a pathways-building role met in the UK for a three-day pop-up: twenty-four active pathway builders, working on more distributed pathways-building, stronger relationships and influence in our partnerships, and more relevance, mutual support, and coordination across the work. Annette shared the <a href="https://docs.google.com/presentation/d/1D4CxDbV2vBwqGS-FlhLOtgwT3gcY8gC75FxpQpq8GnE/edit">pre-read deck</a> in advance, and it is worth reading whether or not you were there.</p>
+    <p>The pre-read pulls together what already exists in the system, gathered mostly from 10x100 and mission sensemaking conversations: our aims and ambitions, the golden threads running through the work, the seasons we have been through and the trajectory we are on, how we do strategy, the craft of pathways building, where demand is emerging, and Dm-level fundraising plans. Some sections are well established and some are early ideas, and comments can go straight on the deck.</p>
+    <p>At the last 10x100, Max talked about creating deeper and wider pathways through strategic political moves and tactical approaches. Michelle picked up the pop-up's focus on relationality and content-driven future planning.</p>
+    <p>Gurden and Eunsoo recorded and transcribed the sessions and had Claude build <a href="https://dark-matter-labs.github.io/mission-pathways-pop-up/The-Whole-Arc-Mission-Pathways-Popup">an AI-generated synthesis site</a>, readable in quick or full detail mode. It went up fast, and the team is open about the tension between AI-assisted synthesis and human harvesting, so corrections and feedback are genuinely wanted.</p>
+    <span class="credit">Convening: Annette &nbsp;·&nbsp; Pre-read contributors: Eunsoo, Meggan, Indy, Adam, Jason, Gurden &nbsp;·&nbsp; Synthesis: Gurden, Eunsoo</span>
+  </div>
+</section>
+
+<!-- ═══ STEWARD CONSTELLATION ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Governance</span>
+    <h1 class="section-title">The first Dm Steward constellation 🌱</h1>
+    <p>On 13 August, Sophia <a href="https://darkmatterlabs.slack.com/archives/C014AAKRJKY/p1786614797223779">announced the first Dm Steward constellation</a>, closing a process that has been running since April. It drew 39 nominations, including nine self-nominations, across 33 submissions.</p>
+    <p>The themes that came through the nominations were about caring for the whole, distributing responsibility more broadly, bringing relational maturity and power-awareness to stewardship, and making it sustainable rather than creating another layer of concentrated responsibility.</p>
+
+    <h3 class="subsub">How it is organised</h3>
+    <p>The constellation sits across three interconnected circles, with some Stewards in more than one, which gives the circles connective tissue rather than hard edges:</p>
+    <ul class="body-list">
+      <li><strong>Mission &amp; Pathways</strong></li>
+      <li><strong>Org Design &amp; Structures</strong></li>
+      <li><strong>Capability &amp; People</strong></li>
+    </ul>
+    <p>Health Keepers stay responsible for whole-organisation strategic health, risk, and inflection-point decisions, with the Stewards working closely alongside them to sense and act on what is emerging across Dm.</p>
+    <p>Seventeen people have stepped in: Alicia, Alizé, Andrea, Annette, Adam, Eunji, Eunsoo, Fang, Gurden, Indy, Jason, Joost, Jorn, Leon, Michelle, Prateek, and Sophia.</p>
+    <blockquote>
+      <p>The intention isn't to arrive with fully formed mandates and processes, but to co-create them through the experiment: where does the system most need stewardship, what responsibilities should sit where, how do we best use our collective capacity, and what conditions do Stewards need to hold this well?</p>
+      <cite>— Sophia</cite>
+    </blockquote>
+    <p>It runs as a six-month experiment with a review at three months and again at the end, looking at whether these are the right circles and mandates, how well signals move across the system, and what capacity stewardship actually needs to be sustainable. The Stewards have asked to be reached out to, so do.</p>
+    <span class="credit">Announced by: Sophia &nbsp;·&nbsp; On behalf of: the People team and Health Keepers &nbsp;·&nbsp; Working group: Sophia, Jorn, Annette, Eunsoo</span>
+  </div>
+</section>
+
+<!-- ═══ NEXT CYCLE ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Change orchestration</span>
+    <h1 class="section-title">The next cycle of hunches and experiments</h1>
+    <p>The GGC has formally disbanded, and the work now continues as change orchestration on a twice-yearly cycle. Annette <a href="https://darkmatterlabs.slack.com/archives/C014AAKRJKY/p1786698067475119">shared the outline for the next cycle</a> on 14 August while Eunsoo was on leave, and Eunsoo has since <a href="https://docs.google.com/presentation/d/12D2rwimKqo4E0zXkopqE1asvLiZyRAI7ysRhpikzhN4/edit">updated the deck</a> with detail on each experiment and who is holding it.</p>
+    <p>Much of this cycle is about grounding and re-onboarding ourselves in the new governing systems, then building out our learning, distributed pathways, and strategy muscles. The experiments span, among other things:</p>
+    <ul class="body-list">
+      <li>Team re-onboarding to the new systems</li>
+      <li>Embedding what was designed last cycle, including the new Stewards in their roles</li>
+      <li>Talent strategy and forecasting, and offboarding practices</li>
+      <li>Updated plans for raising pooled funds and engaging other revenue sources</li>
+      <li>AI and knowledge management infrastructure</li>
+      <li>Design, comms and AI standards</li>
+      <li>Creating a headline view of our mission, strategy and core assets</li>
+      <li>Sandbox conditions for work in a focus phase</li>
+      <li>Protocols for entity changes and spin-outs</li>
+    </ul>
+    <p>Annette was straight about what this will feel like: for some people the changes will be big and ask for a fundamental shift in how they think about their role, and for others it will be small adjustments to daily habits. Some things need everyone aligned, like the standards systems and mandatory data reporting. Cumulatively they expect a notable effect on our culture.</p>
+    <div class="card accent">
+      <span class="card-label">There is a slide with your name on it</span>
+      <p>The deck has a <a href="https://docs.google.com/presentation/d/12D2rwimKqo4E0zXkopqE1asvLiZyRAI7ysRhpikzhN4/edit">slide listing the support each experiment needs</a>, with blank cells to offer help. A second Q&amp;A on the hunches and experiments runs in September. The first was on 19 August, co-led by Eunsoo, Sophia, and Annette.</p>
+    </div>
+    <span class="credit">Cycle stewarded by: Eunsoo, as Change Orchestrator &nbsp;·&nbsp; Shared by: Annette &nbsp;·&nbsp; With: Health Keepers</span>
+  </div>
+</section>
+
+<!-- ═══ BASELINE SURVEY ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">What the data says</span>
+    <h1 class="section-title">Baseline survey: an upward trend, and a clear next problem</h1>
+    <p>Eunsoo <a href="https://darkmatterlabs.slack.com/archives/C0AJ5U9DA8N/p1787236505317119">shared the results and analysis</a> of the second baseline survey on 20 August. Comparing it against March gives us the first real measure of whether the experiments changed anything. Overall the trend is up, including confidence in the change orchestration process itself.</p>
+
+    <div class="split">
+      <div class="col up">
+        <h3>Where we improved most</h3>
+        <ul>
+          <li>More people feel they have legitimate channels to raise concerns about publishing.</li>
+          <li>More people feel organisational risk is shared fairly, relative to their level of engagement.</li>
+          <li>More people understand what it means to be a Dm Member.</li>
+          <li>Fewer people are affected by unresolved interpersonal conflicts.</li>
+          <li>More people know who should handle an unexpected organisational issue, and how.</li>
+        </ul>
+      </div>
+      <div class="col down">
+        <h3>Where we are still weak</h3>
+        <ul>
+          <li>Being aware of colleagues' work and feeling connected to the whole</li>
+          <li>Knowledge and learning flows</li>
+          <li>Anticipating talent and upskilling needs</li>
+          <li>Mission coherence</li>
+          <li>Coordination across teams</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top:28px;">Annette's summary from the Q&amp;A: the governance-focused experiments have put the structures in place to start dealing with things in a more coordinated way. Mission coherence, learning, and coordination are the harder, entangled problems, and they are the focus of the next cycle.</p>
+    <p>The <a href="https://dark-matter-labs.github.io/change-orchestration/#survey">Change Orchestration website</a> now carries the detailed analysis, including anonymised stats on who responded. It is the one-stop place to see what is happening in the experiments, with #org-governance-transition for questions, feedback, and updates.</p>
+    <span class="credit">Analysis: Eunsoo &nbsp;·&nbsp; Credit noted to the experiment teams behind Peer Review and Authorship, Dm Stewards, Health Keepers, Forms of Engagement, and the Social Contract, and to the People team</span>
+  </div>
+</section>
+
+<!-- ═══ 10x100 ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Quarterly</span>
+    <h1 class="section-title">The 10x100, and what came out of the breakouts</h1>
+    <p>Yesterday's quarterly ran with Robyn hosting while Joshua was unwell, and Adam on the technical side. It had been moved from 19 August to sit after the Mission Pathways pop-up, and that earlier slot was used for the Stewards and hunches Q&amp;A instead.</p>
+    <p>After the organisational updates, the session split into four breakout rooms, one per piece of work:</p>
+    <ul class="breakouts">
+      <li><strong>Lund radical scenarios —</strong> Anette, Maria and Meggan on the City of Lund collaboration, where the team mapped and visualised the climate action plan, combined the different departments, and built scenarios with concrete numbers to show what different choices actually produce.</li>
+      <li><strong>Risk Intelligence Lab —</strong> Sofia and Prateek on the shift from initiative to lab, and the open question of how to hold actuarial and qualitative risk assessment together.</li>
+      <li><strong>Camden food systems —</strong> Aleksander on coordinating purchasing power to build more resilient supply chains and localised food systems.</li>
+      <li><strong>Civic Ledger —</strong> Fang and Eunji on the Berlin learnings, and where the work goes next.</li>
+    </ul>
+    <p>Indy pulled out the questions that ran across all four: how we handle strategic branding, what economic function each piece of work is performing, and whether our theories of change actually line up across the organisation.</p>
+    <div class="card">
+      <span class="card-label">Feedback taken</span>
+      <p>The clear message from the room was that the breakouts were too short, and 10 minutes longer would have been better. The next one is on 18 November, and Robyn, Adam, and Joshua are working out a tag-team hosting model among the team, so let them know if you are interested in co-hosting a future 10x100.</p>
+    </div>
+    <span class="credit">Host: Robyn &nbsp;·&nbsp; Technical: Adam &nbsp;·&nbsp; Highlights collected by: Robyn, Joshua</span>
+  </div>
+</section>
+
+<!-- ═══ OCTOBER GATHERING ═══ -->
+<section class="reflective">
+  <div class="wrap">
+    <span class="eyebrow">A hard call</span>
+    <h1 class="section-title">The October gathering is postponed</h1>
+    <p>On 14 August, Adam <a href="https://darkmatterlabs.slack.com/archives/C014AAKRJKY/p1786713897738719">shared a recommendation from the Health Keepers</a> to delay the October all-team gathering to at least late Q1 next year.</p>
+    <p>The reasoning was laid out: reserves are depleted in some parts of the organisation, our pathways and the continuity of work are not as strong as we would like, and a good number of people had flagged clashes between the gathering dates and other events that matter for developing the work. Meanwhile the smaller, highly specific pop-ups have been generating real energy, so that is where the focus goes for now.</p>
+    <blockquote>
+      <p>Ultimately we could not justify with integrity Dm making this significant investment of all our shared time and resources on an all team Gathering given this picture.</p>
+      <cite>— Adam, for the Health Keepers</cite>
+    </blockquote>
+    <p>The note also acknowledged what this costs, because for a lot of us the gathering is the thing we get most out of all year. Responses in the thread were a mix of disappointment and agreement. Maria said she felt genuinely sad. Anette called it sad but wise, and said she would see everyone in spring. Ivana admitted the timing was easier alongside autumn school holidays. Amelia thanked Adam for making a hard call early and communicating it clearly.</p>
+    <p>Work towards a gathering early next year is starting, and support for pop-ups continues where they are needed. Adam is also picking up the wider question of where we invest energy in gathering at all, given how well the small intentional formats have been working.</p>
+    <span class="credit">Recommendation from: the Health Keepers &nbsp;·&nbsp; Shared by: Adam</span>
+  </div>
+</section>
+
+<!-- ═══ PROJECT HIGHLIGHTS ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Project highlights</span>
+    <h1 class="section-title">What we're building</h1>
+
+    <h2 class="sub">Civic Ledger: what Berlin taught us</h2>
+    <p>Fang, Eunji, and Koo have published <a href="https://dark-matter-labs.github.io/civic-ledger-berlin-aug-2026-learnings/">a page capturing the key learnings</a> from the Civic Ledger Berlin week. It covers the shift towards broader agreement infrastructure, how distributed actors, responsibilities, and resources might be composed into consequential action, fuzzy ruling, meta-design, and the team's emerging thinking on lead markets and the civic tech economy. There are <a href="https://drive.google.com/drive/folders/1tiDD6WU927nPlYVyc4SpFf8O8y6tHTDP">demo videos</a> too.</p>
+    <p>They have asked a specific question of the team, which is worth answering: what feels strongest, what is unclear, and what is worth pushing further.</p>
+    <span class="credit">Published by: Fang, Eunji, Koo &nbsp;·&nbsp; With: Ahyoung, Anahat, Caroline, Doeun, Gurden, Gyorgyi, Indy, Kai, Nadim, Olaf, Prof Kim, Robyn, Saem, Simon, Vlad, and others</span>
+
+    <h2 class="sub">Camden becomes London-wide</h2>
+    <p>The Camden food mission has moved fast since the August dinner and workshop. The team is now working with Sustain on separate but linked bids, focused London-wide with Camden at the centre. Adam has been securing Oxford and the Oxford policy briefing as partners, and a set of prototype tools has been built out to carry the portfolio: a horizon navigator, a Camden map, a nutrition cascade model, and a nutrition supply map. Gurden is moving the hosting onto Dm's own server so the team can make changes without waiting on anyone.</p>
+    <span class="credit">Lead: Adam &nbsp;·&nbsp; Team: Aleksander, Siddhi, Indy &nbsp;·&nbsp; Hosting: Gurden &nbsp;·&nbsp; Spend audit: Alizé</span>
+
+    <h2 class="sub">Homes that Don't Cost the Earth gets noticed</h2>
+    <p>Future of London has asked whether HDCE could be showcased as the international case study at their annual conference on 8 October, on quality placemaking in challenging times. They found the Arup and Dm work themselves. Their audience is mostly local authority planning, regeneration, and housing professionals, and they have asked for the tensions and complexities as much as the vision, which is a good sign.</p>
+    <p>Separately, the fundraising strategy, learning report, and budget reporting went to Laudes on 2 September, with a two, five, and ten year plan now included.</p>
+    <span class="credit">Strategy: Maxime &nbsp;·&nbsp; Learning report and budget: Oliver &nbsp;·&nbsp; With: Jorn and partners at Arup, IIPP, and Rising Tide</span>
+
+    <h2 class="sub">Also this month</h2>
+    <ul class="body-list">
+      <li>TreesAI FCM phase two is moving into contracting, with a wider kick-off planned for October. Jason, Sofia, and Gurden are fleshing out the work plan.</li>
+      <li>Amelia is looking for anyone who has worked on demographic transitions, particularly the right-sizing of shrinking cities, new economic models for basic services, and pension systems. Maxime, Olaf, and IIPP have already pitched in.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ PEOPLE ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">People</span>
+    <h1 class="section-title">Comings and goings</h1>
+
+    <h2 class="sub">Rob retires today</h2>
+    <p>Rob's last day is today, 4 September. He spent his final weeks on the EU audit, working through the reconciliation with Alizé, Helen, Louise, Jason, Sophia, and Joost. The Annex documentation went up to the EU Portal on 2 September, on deadline.</p>
+    <blockquote>
+      <p>Let's regroup in preparation for the next audit stage. As I won't be there for that part of the journey, I want to wish you all good luck. You'll smash it! Night night, Rob.</p>
+      <cite>— Rob, on submitting the final annex</cite>
+    </blockquote>
+    <p>That is a fair summary of how Rob has worked: the unglamorous, exacting, deadline-facing part of holding an organisation together, done properly and without fuss, right up to the last evening. He has held the Dutch entity through every twist and turn since long before most of us arrived. Thank you, Rob.</p>
+    <div class="card accent">
+      <span class="card-label">Add a note to Rob's send-off board</span>
+      <p>There is a virtual kudo board up so everyone can share a memory, a thank-you, or just say goodbye. Please take a minute before he heads off: <a href="https://www.kudoboard.com/boards/wtFLFXH6">kudoboard.com/boards/wtFLFXH6</a>. Let's give him a proper send-off.</p>
+    </div>
+    <span class="credit">With thanks from: the whole team</span>
+
+    <h2 class="sub">Joining soon</h2>
+    <ul class="body-list">
+      <li><strong>Nicholas</strong> — joining to work on Santiago.</li>
+      <li><strong>Anna Rowell</strong> — joining as a net zero cities policy expert.</li>
+    </ul>
+    <p>Louise, Helen, Sungwon, Kata, and Andrea have all landed since the summer. Louise has also quietly rebuilt the expense process using AI, which anyone who has filed a claim will appreciate.</p>
+  </div>
+</section>
+
+<!-- ═══ RENDEZ-VOUS ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Team moments</span>
+    <h1 class="section-title">Dm rendez-vous 🌍</h1>
+    <p>Where people crossed paths in person:</p>
+    <div class="rendezvous">
+      <div class="rz">
+        <span class="flag">🇬🇧</span>
+        <h4>The UK, Mission Pathways pop-up</h4>
+        <p>Three days and twenty-four pathway builders in the last week of August, the biggest in-person gathering of the month.</p>
+      </div>
+    </div>
+    <p style="margin-top:24px;">There is also an honorary mention to collect. Anahat, Prateek, and Arianna are picking up the Prix Ars Electronica recognition for the Planetary Compendium, which we first heard about back in May.</p>
+  </div>
+</section>
+
+<!-- ═══ ASKS ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Three small asks</span>
+    <h1 class="section-title">Things that need you</h1>
+    <ul class="body-list">
+      <li><a href="https://form.typeform.com/to/K3hnE12j"><strong>Design at Dm survey</strong></a>: Anahat needs responses before 15 September. It is a short one.</li>
+      <li><a href="https://dark-matter-labs.github.io/civic-ledger-berlin-aug-2026-learnings/"><strong>Civic Ledger learnings</strong></a>: Fang, Eunji, and Koo want to know what is strongest, what is unclear, and what to push further.</li>
+      <li><a href="https://docs.google.com/presentation/d/12D2rwimKqo4E0zXkopqE1asvLiZyRAI7ysRhpikzhN4/edit"><strong>Experiment support</strong></a>: the hunches deck has a slide showing what each experiment needs. Put your name in a blank cell.</li>
+    </ul>
+    <div class="card">
+      <span class="card-label">Streamtime, still</span>
+      <p>Project completion rates remain the sticking point, and they are what let us recognise income against overheads. Project Holders flagged in August that they could not report because team members had not updated theirs. If yours is outstanding, please close it off.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LOOKING AHEAD ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Looking ahead</span>
+    <h1 class="section-title">What's next</h1>
+    <h2 class="sub">Coming up</h2>
+    <ul class="events">
+      <li><span class="date">15 September</span><span class="what">Deadline for the Design at Dm survey</span></li>
+      <li><span class="date">3rd week of Sept</span><span class="what">Second Q&amp;A on the hunches and experiments</span></li>
+      <li><span class="date">25–26 September</span><span class="what">In-person onboarding for Sheffield's Partnership Lab stewarding group</span></li>
+      <li><span class="date">8 October</span><span class="what">Future of London annual conference, with HDCE under discussion as the international case study</span></li>
+      <li><span class="date">October</span><span class="what">Wider kick-off for TreesAI FCM phase two</span></li>
+      <li><span class="date">18 November</span><span class="what">Next 10x100</span></li>
+    </ul>
+
+    <h2 class="sub">In Issue #7</h2>
+    <ul class="body-list">
+      <li>How the Steward constellation is settling into practice</li>
+      <li>The first experiments from the new cycle getting going</li>
+      <li>Where the Camden and Sustain bids land</li>
+      <li>Design at Dm survey results</li>
+      <li>More rendez-vous, and whatever you tag with #addtonewsletter</li>
+    </ul>
+
+    <div class="card">
+      <span class="card-label">One more thing</span>
+      <p>Use #addtonewsletter in any Slack channel to flag something for the next issue.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SIGN-OFF ═══ -->
+<div class="wrap">
+  <div class="signoff">
+    <p>Questions or feedback? Drop a note in #org-announcements.</p>
+    <p class="sign-italic"><em>See you next month,</em></p>
+    <p class="sign-team">The Dm Dispatch Team</p>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="mark">
+      <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dark Matter Labs">
+        <rect x="0" y="0" width="40" height="40" rx="2" fill="#ffffff"/>
+        <text x="8" y="29" font-family="'SaansMedium', system-ui, sans-serif" font-size="20" font-weight="500" fill="#111112">Dm</text>
+        <text x="30.5" y="12" font-family="'SaansMedium', system-ui, sans-serif" font-size="7" font-weight="500" fill="#111112">06</text>
+      </svg>
+    </div>
+    <p>Issue #6 — August 2026 — Dark Matter Labs Internal Newsletter</p>
+    <p><a href="/dm-newsletter/">← Back to archive</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
