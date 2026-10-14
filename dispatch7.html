@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The Dm Dispatch — September 2026 — Issue #7</title>
+<style>
+  /* ─── Saans typeface (Dm brand face) ─────────────────────────── */
+  @font-face {
+    font-family: 'SaansRegular';
+    src: url('https://dm-style-guide.vercel.app/assets/fonts/SaansRegular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'SaansMedium';
+    src: url('https://dm-style-guide.vercel.app/assets/fonts/SaansMedium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+  }
+
+  /* ─── Design tokens ──────────────────────────────────────────── */
+  :root {
+    --canvas: #111112;
+    --paper: #ffffff;
+    --surface-raised: #252424;
+    --surface-overlay: #212121;
+    --surface-elevated: #292929;
+    --border-default: #333333;
+    --border-subtle: #353535;
+    --text-primary: #ffffff;
+    --text-secondary: #a8a8a8;
+    --text-tertiary: #7d7d7d;
+    --text-muted: #585858;
+    --accent-lavender: #a28cc6;
+    --accent-periwinkle: #737ea5;
+
+    --font-regular: 'SaansRegular', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-medium: 'SaansMedium', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    --container: 1200px;
+    --ease: 0.3s ease-in-out;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  ::selection { background: var(--accent-lavender); color: var(--canvas); }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--canvas);
+    color: var(--text-primary);
+    font-family: var(--font-regular);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  a { color: var(--accent-lavender); text-decoration: none; transition: color var(--ease); }
+  a:hover { color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ─── Masthead ───────────────────────────────────────────────── */
+  .masthead { border-bottom: 1px solid var(--border-default); padding: 40px 0 0; }
+  .masthead-bar {
+    font-family: var(--font-medium);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-periwinkle);
+    text-align: center;
+    padding-bottom: 40px;
+  }
+  .masthead-logo { display: flex; justify-content: center; margin-bottom: 28px; }
+  .masthead-title {
+    font-family: var(--font-regular);
+    font-weight: 400;
+    font-size: clamp(48px, 9vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .masthead-sub { text-align: center; color: var(--text-secondary); font-size: 18px; margin-bottom: 36px; }
+  .masthead-meta {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    border-top: 1px solid var(--border-subtle); padding: 16px 0;
+    font-family: var(--font-medium); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-tertiary);
+  }
+
+  .backlink { padding: 24px 0 0; font-size: 13px; font-family: var(--font-medium); letter-spacing: 0.04em; }
+
+  /* ─── Section rhythm ─────────────────────────────────────────── */
+  section { padding: 56px 0; border-bottom: 1px solid var(--border-default); }
+  section:last-of-type { border-bottom: none; }
+
+  .eyebrow {
+    font-family: var(--font-medium); font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent-periwinkle);
+    display: block; margin-bottom: 16px;
+  }
+
+  h1.section-title {
+    font-family: var(--font-regular); font-weight: 400;
+    font-size: clamp(28px, 4.5vw, 40px); line-height: 1.12;
+    letter-spacing: -0.02em; margin-bottom: 24px;
+  }
+
+  h2.sub {
+    font-family: var(--font-medium); font-weight: 500; font-size: 22px;
+    line-height: 1.25; letter-spacing: -0.01em; margin: 40px 0 12px;
+    color: var(--text-primary);
+  }
+
+  h3.subsub {
+    font-family: var(--font-medium); font-weight: 500; font-size: 15px;
+    letter-spacing: 0.02em; margin: 28px 0 10px; color: var(--text-primary);
+  }
+
+  p { color: var(--text-secondary); margin-bottom: 16px; }
+  p strong { color: var(--text-primary); font-family: var(--font-medium); font-weight: 500; }
+
+  ul.body-list { list-style: none; margin: 16px 0; }
+  ul.body-list li {
+    color: var(--text-secondary); padding-left: 22px; position: relative;
+    margin-bottom: 12px; line-height: 1.6;
+  }
+  ul.body-list li::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 5px; height: 5px; background: var(--accent-periwinkle); border-radius: 50%;
+  }
+  ul.body-list li strong { color: var(--text-primary); font-family: var(--font-medium); font-weight: 500; }
+
+  .credit {
+    font-family: var(--font-medium); font-size: 12px; letter-spacing: 0.03em;
+    color: var(--text-muted); margin-top: 14px; display: block; line-height: 1.6;
+  }
+  .credit a { color: var(--accent-periwinkle); }
+
+  /* ─── Callout card ───────────────────────────────────────────── */
+  .card {
+    background: var(--surface-raised); border: 1px solid var(--border-subtle);
+    border-radius: 14px; padding: 24px 26px; margin: 28px 0;
+  }
+  .card .card-label {
+    font-family: var(--font-medium); font-size: 13px; color: var(--text-primary);
+    display: block; margin-bottom: 8px;
+  }
+  .card p { margin-bottom: 0; color: var(--text-secondary); }
+  .card.accent { border-left: 2px solid var(--accent-lavender); }
+
+  /* ─── Pull quote ─────────────────────────────────────────────── */
+  blockquote { border-left: 2px solid var(--accent-lavender); padding: 6px 0 6px 26px; margin: 28px 0; }
+  blockquote p {
+    font-size: 21px; line-height: 1.45; color: var(--text-primary);
+    font-family: var(--font-regular); margin-bottom: 10px;
+  }
+  blockquote cite {
+    font-style: normal; font-family: var(--font-medium); font-size: 12px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary);
+  }
+
+  /* ─── Two-column survey split ────────────────────────────────── */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 8px; }
+  .split .col { background: var(--surface-raised); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 20px 22px; }
+  .split .col h3 { font-family: var(--font-medium); font-weight: 500; font-size: 14px; color: var(--text-primary); margin: 0 0 12px; }
+  .split .col ul { list-style: none; }
+  .split .col li { color: var(--text-secondary); font-size: 14px; line-height: 1.5; margin-bottom: 10px; padding-left: 18px; position: relative; }
+  .split .col li::before { content: ""; position: absolute; left: 0; top: 9px; width: 4px; height: 4px; border-radius: 50%; }
+  .split .up li::before { background: #6fae7f; }
+  .split .down li::before { background: var(--accent-periwinkle); }
+
+  /* ─── Breakout list ──────────────────────────────────────────── */
+  .breakouts { list-style: none; margin: 20px 0; }
+  .breakouts li {
+    padding: 14px 0; border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary); line-height: 1.55;
+  }
+  .breakouts li:last-child { border-bottom: none; }
+  .breakouts li strong { color: var(--text-primary); font-family: var(--font-medium); font-weight: 500; }
+
+  /* ─── Rendez-vous ────────────────────────────────────────────── */
+  .rendezvous { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 24px; }
+  .rendezvous .rz {
+    background: var(--surface-raised); border: 1px solid var(--border-subtle);
+    border-radius: 12px; padding: 20px; transition: border-color var(--ease);
+  }
+  .rendezvous .rz:hover { border-color: var(--accent-periwinkle); }
+  .rendezvous .rz .flag { font-size: 22px; display: block; margin-bottom: 10px; }
+  .rendezvous .rz h4 { font-family: var(--font-medium); font-weight: 500; font-size: 14px; color: var(--text-primary); margin-bottom: 6px; }
+  .rendezvous .rz p { font-size: 13px; color: var(--text-secondary); margin-bottom: 0; line-height: 1.5; }
+
+  /* ─── Events list ────────────────────────────────────────────── */
+  .events { list-style: none; margin: 20px 0; }
+  .events li {
+    display: grid; grid-template-columns: 170px 1fr; gap: 18px;
+    padding: 14px 0; border-bottom: 1px solid var(--border-subtle);
+  }
+  .events li:last-child { border-bottom: none; }
+  .events .date {
+    font-family: var(--font-medium); font-size: 12px; letter-spacing: 0.05em;
+    color: var(--accent-periwinkle); text-transform: uppercase; padding-top: 2px;
+  }
+  .events .what { color: var(--text-secondary); }
+
+  /* ─── Reflective / hard-call section ─────────────────────────── */
+  .reflective { background: linear-gradient(160deg, #000 0%, var(--surface-elevated) 100%); }
+
+  /* ─── Sign-off / footer ──────────────────────────────────────── */
+  .signoff { padding: 56px 0; }
+  .signoff .sign-italic { color: var(--text-secondary); margin-bottom: 6px; }
+  .signoff .sign-team { font-family: var(--font-medium); color: var(--text-primary); font-size: 18px; }
+
+  footer.site {
+    background: var(--canvas); border-top: 1px solid var(--border-default);
+    padding: 48px 0; text-align: center;
+    box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+  }
+  footer.site .mark { display: flex; justify-content: center; margin-bottom: 18px; }
+  footer.site p {
+    color: var(--text-muted); font-family: var(--font-medium); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  footer.site a { color: var(--accent-periwinkle); }
+
+  /* ─── Responsive ─────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .split { grid-template-columns: 1fr; }
+    .events li { grid-template-columns: 1fr; gap: 4px; }
+    .masthead-meta { flex-direction: column; align-items: center; text-align: center; }
+    section { padding: 44px 0; }
+  }
+
+    /* Finance table (from Issue 5) */
+  .table-scroll { overflow-x: auto; margin: 24px 0; }
+  table.finance { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 480px; }
+  table.finance th {
+    text-align: left; font-family: var(--font-medium); font-weight: 500;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-tertiary); padding: 12px 14px;
+    border-bottom: 1px solid var(--border-default);
+  }
+  table.finance td { padding: 12px 14px; border-bottom: 1px solid var(--border-subtle); color: var(--text-secondary); }
+  table.finance tr:last-child td { border-bottom: none; }
+  table.finance tr.total td {
+    color: var(--text-primary); font-family: var(--font-medium);
+    border-top: 1px solid var(--border-default); border-bottom: none;
+  }
+  table.finance td:first-child { color: var(--text-primary); }
+
+  /* Issue 7 additions */
+  .rendezvous { grid-template-columns: 1fr 1fr; }
+  .events .what::first-letter { text-transform: uppercase; }
+  .events li { grid-template-columns: 190px 1fr; }
+  @media (max-width: 640px) { .rendezvous { grid-template-columns: 1fr; } .events li { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ═══ MASTHEAD ═══ -->
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-logo">
+      <svg width="240" height="40" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dark Matter Labs">
+        <rect x="0" y="0" width="40" height="40" rx="2" fill="#ffffff"/>
+        <text x="8" y="29" font-family="'SaansMedium', system-ui, sans-serif" font-size="20" font-weight="500" fill="#111112">Dm</text>
+        <text x="30.5" y="12" font-family="'SaansMedium', system-ui, sans-serif" font-size="7" font-weight="500" fill="#111112">07</text>
+        <text x="54" y="27" font-family="'SaansRegular', system-ui, sans-serif" font-size="19" fill="#ffffff" letter-spacing="-0.3">Dark Matter Labs</text>
+      </svg>
+    </div>
+    <div class="masthead-bar">Issue #7 &nbsp;·&nbsp; September / Early October 2026 &nbsp;·&nbsp; Dm’s 10th Anniversary Year</div>
+  </div>
+  <div style="border-top:1px solid var(--border-subtle);">
+    <div class="wrap">
+      <h1 class="masthead-title">The Dm Dispatch</h1>
+      <p class="masthead-sub">Your monthly pulse on Dark Matter Labs</p>
+      <div class="masthead-meta">
+        <span>September 2026</span>
+        <span>Internal Newsletter</span>
+        <span>Issue #7</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="backlink"><a href="/dm-newsletter/">← Back to archive</a></div>
+</div>
+
+<!-- ═══ WELCOME ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Welcome back</span>
+    <h1 class="section-title">Hello team,</h1>
+    <p>Dm has its first spin-in. RZ Studio was incorporated in August as a new company in the Dm group, and around £3m is on its way to fund its first cohort of bioregional partners. Read more in <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1790191501495769">Leon’s update</a>.</p>
+    <p>Elsewhere, the second cycle of change orchestration is running until the end of November, Health Keepers have a new way to hear from all of us, and medulla had a full week as colleagues from Seoul, Madrid, and London came to Berlin. The Madrid 2050° site went live, the Berlin Heat Risk Clinic published what it learned, and Hackney asked if we could help it think about 2040.</p>
+    <p>Some harder news too. July was a weak month financially and we did not win the GLA data centre bid. Theo is also moving on to La DIHAL, and wishes are being shared in <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1791282592244579">this thread</a>.</p>
+    <div class="card accent">
+      <span class="card-label">A note for contributors</span>
+      <p>Tag anything worth sharing with <strong>#addtonewsletter</strong> in any Slack channel and it will find its way into Issue #8. Nothing was tagged this month, so most of what is here came from reading through the channels. Tagging helps.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RZ STUDIO ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Spin-in</span>
+    <h1 class="section-title">RZ Studio: Dm’s first spin-in</h1>
+    <p>On 23 September Leon <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1790191501495769">shared the news</a>: <a href="https://rz.capital/">RZ Studio Ltd</a> was officially incorporated in August as a company limited by guarantee in the Dark Matter Labs Group. Its directors are Jen Hooke, Indy, and Leon, with Thao working alongside them on the studio work.</p>
+    <p>RZ works with place-based partners to build, and then allocate anchor investment into, local infrastructure that lets capital flow into bioregional work on different terms. Two of the three first-cohort partners are already underway: Moray Firth Bioregion in Scotland, the Orne Watershed in France, and South Yorkshire Bioregion in England. The aim, in Leon’s words, is to prove that a different investment paradigm is possible.</p>
+    <p>Around £3m is on its way from the Thirty Percy Foundation, and RZ is raising a further £7m to build the team and run cohorts two and three in 2027.</p>
+    <p>There is an <a href="https://docs.google.com/document/d/1RKvTYZaBAS5cRTwxKdoG2thwTtvWeY812XzcuzMQqc8/edit">updated concept note</a> for anyone who wants more than the website offers, particularly funders. Joshua pointed out it is relevant to urban resilience work, and Adam and Leon flagged a link to the Cornerstone work in Sheffield and to emerging work in South Yorkshire with Indy and Vlad.</p>
+    <blockquote>
+      <p>Really excited for RZ to have fully kicked into gear after such a long incubation period and also for Dm to experiment with spin-ins in a really practical way.</p>
+      <cite>— Leon</cite>
+    </blockquote>
+    <span class="credit">Directors: Jen Hooke, Indy, Leon &nbsp;·&nbsp; Studio: Thao &nbsp;·&nbsp; Funding: Thirty Percy Foundation</span>
+  </div>
+</section>
+
+<!-- ═══ CHANGE ORCHESTRATION ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Change orchestration</span>
+    <h1 class="section-title">Cycle two is underway</h1>
+    <p>Cycle two of the change orchestration experiments runs until the end of November. Eunsoo met most of the experiment leads in September and <a href="https://darkmatterlabs.slack.com/archives/C0AJ5U9DA8N/p1790180971931219">posted a summary</a> of what each of the seventeen experiments will do, with <a href="https://app.notion.com/p/darkmatterlabs/Cycle-2-experiments-what-s-happening-until-the-end-of-November-3e4190f347a280bbaa82c6e55c5e9f97">a longer write-up in Notion</a>. The parts most likely to touch your week:</p>
+    <ul class="body-list">
+      <li><strong>Time reporting:</strong> the target is 90% logged every month by the end of November, so that we see notable improvements in our ability to recognise and forecast income and thus manage our finances together. Log by day three of the following month, and make sure every project has a secondary holder who can cover project completion.</li>
+      <li><strong>Pathway time:</strong> there will be one Streamtime job with an entity drop-down. If you logged pathway time this year, Jason or Louise may ask you for a rough split by entity.</li>
+      <li><strong>Design and AI standards:</strong> Anahat is leading work on templates, a single brand baseline, and design guidelines that AI tools can follow.</li>
+      <li><strong>Capital:</strong> a new core-funding proposition and a review of the Growth Pot are in progress, with business model sessions run by Malik.</li>
+      <li><strong>Dm Uploads</strong> are coming back. Anyone can propose a session to share work in progress.</li>
+    </ul>
+
+    <h2 class="sub">Telling Health Keepers what you are noticing</h2>
+    <p>Health Keepers, the nine Stewards who look after organisational health as a whole, meet every two weeks. They noticed they had no reliable way of hearing about issues before those issues fell through the cracks, so Eunsoo <a href="https://darkmatterlabs.slack.com/archives/C0AJ5U9DA8N/p1790082213741429">set up a Dm Signals form</a> as a two-and-a-half-month trial. It asks five optional questions: what is on your mind, what you are noticing inside Dm, what you are seeing outside it, what might become a problem in three months, and an emoji for how your week has felt.</p>
+    <p>Eunsoo turns the responses into a synthesis every fortnight, Health Keepers review it, and decisions that they take as a result are logged. If something is urgent, do not wait for the form: message a Health Keeper or Eunsoo directly. The current Health Keepers are Sophia, Annette, Adam, Andrea, Jorn, Leon, Prateek, Eunsoo, and Jason.</p>
+    <div class="card accent">
+      <span class="card-label">The form</span>
+      <p><a href="https://form.typeform.com/to/qUjAAXiJ">form.typeform.com/to/qUjAAXiJ</a>. It takes a couple of minutes. The emoji question feeds an anonymous mood check for future issues of the Dispatch.</p>
+    </div>
+    <div class="card">
+      <span class="card-label">Signal Snapshot (22–28 September 2026)</span>
+      <p><a href="https://app.notion.com/p/darkmatterlabs/Dm-Signals-Synthesis-22-28-September-2026-3f0190f347a28070a68cefb19e942d28">Read the full synthesis</a>. Seven of you shared signals (six from Dm Stewards). The overall picture is of a team that broadly trusts the direction of travel but is stretched. Many of you see the change orchestration work, the new Stewards group, and shared financial stewardship as progress, and the Mission Pathways pop-up as a good moment to make sense of things together. Outside Dm, we are still highly regarded — though some find us dense, and partners are curious about how we deliver. The strain sits in two places: urgent work landing on the same few people as new working groups form, and uncertainty about funding and how xCO and DML relate to each other. Several of you also felt the Gathering’s cancellation more than expected, and asked for more deliberate acknowledgement of each other’s work while remote. Health Keepers will discuss the xCO–DML question, the load on working groups, and how to hear from those who are less visible. If you didn’t respond this time, we’d especially like to hear from you next round.</p>
+    </div>
+    <span class="credit">Change Orchestrator: Eunsoo &nbsp;·&nbsp; Q&amp;A on hunches and experiments: Eunsoo, Sophia &nbsp;·&nbsp; Signals form feedback: Sophia, Gurden, Olaf</span>
+  </div>
+</section>
+
+<!-- ═══ BERLIN ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Berlin</span>
+    <h1 class="section-title">A full week at medulla</h1>
+    <p>From 8 to 10 October, colleagues from Seoul, Madrid, London, and elsewhere spent working days at medulla. Robyn <a href="https://darkmatterlabs.slack.com/archives/C0B0J0AE7C5/p1790870281330069">put the week together</a>: Civic Ledger working sessions, a morning tour of xCO options and positions (recorded for anyone not in Berlin), co-working, and shared lunches with the wider medulla community. Eunji, Koo, Fang, Indy, Louise, Malik, and Oliver were among those visiting.</p>
+    <p>The evenings around it were full:</p>
+    <ul class="body-list">
+      <li><strong>Thursday 8 October:</strong> <a href="https://luma.com/difo5kmh">Berlin 2050°</a>, an evening on building a city-wide heat resilience network for Berlin, and the first event in xCO’s new Seeding Optionality series, which runs until the end of the year. Hosted by Gurden, Prateek, Nadim, and Robyn.</li>
+      <li><strong>Friday 9 October:</strong> Governing Together’s first birthday, a potluck hosted by Gyorgyi with contributions from Anahat and others.</li>
+    </ul>
+
+    <h2 class="sub">The Berlin Heat Risk Clinic</h2>
+    <p>Berlin 2050° followed on from the Berlin Heat Risk Clinic, held on 19 September as part of the Public Vitality Camp, which nextLearning brought to medulla for the day. The clinic was planned as a first step towards a longer-term heat resilience coalition for Berlin. Its <a href="https://risk.darkmatterlabs.org/berlin-heat-risk-clinic">synthesis page</a> is now live on the RiskSense site, next to the <a href="https://risk.darkmatterlabs.org/mumbai-risk-clinic">Mumbai clinic</a> from February. Prateek says both are growing into larger heat resilience projects, with Berlin further along.</p>
+    <span class="credit">Week convened by: Robyn &nbsp;·&nbsp; Heat Risk Clinic: Prateek, Simon, Nadim, Tim, Caroline, Gurden, Robyn &nbsp;·&nbsp; Space: medulla</span>
+  </div>
+</section>
+
+<!-- ═══ PROJECT HIGHLIGHTS ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Project highlights</span>
+    <h1 class="section-title">What we’re building</h1>
+
+    <h2 class="sub">Madrid 2050° is live</h2>
+    <p>The Madrid heat team <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1791370907392359">launched their website</a> on 7 October: <a href="https://madrid2050degrees.com/">madrid2050degrees.com</a>. It went down well across the org, and Amelia was pleased to see how much it had changed since the early drafts. (If it does not load for you, try another network: one of Max’s providers was blocking new sites.)</p>
+    <p>The same week, Indy spoke at an event for Spanish impact investors, and Malik reports they are still working out what just happened. <a href="https://www.linkedin.com/posts/darkmatterlabs_caminoalimpacto-spainnab-darkmatterlabs-activity-7513542671651672064-Gy5n">Dm’s LinkedIn post</a> has the details.</p>
+    <span class="credit">Team: Alicia, Malik, Sofia, Anahat, Oliver, Joost &nbsp;·&nbsp; Site: Anahat, Gurden</span>
+
+    <h2 class="sub">Civic Ledger moves from experiment to implementation</h2>
+    <p>Eunji <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1791271323101819">introduced the Civic Ledger team</a> for those who have not met them yet. Eden leads the app backend design, Kai supports the micro-experiments, and Sungwon is the Product Owner, bridging strategic design, development, and the city pilots.</p>
+    <p>The Korean app is heading to local marketplaces and app stores, and moving from experiment to implementation is surfacing a lot of hidden regulatory requirements around location data and payment gateways. The team has also started sharing an archive of the writing, research, and function and tool catalogues from the past nine months, with a smaller group first.</p>
+    <p>They have decided not to apply to the 2027–29 DUT Open Call. Instead they will spend the next three months on fundraising, communications, and conversations that take the early pilot evidence into new domains.</p>
+    <span class="credit">Lead: Eunji &nbsp;·&nbsp; Team: Koo, Eden, Kai, Sungwon, Fang &nbsp;·&nbsp; Thanks to Amelia and Alex for the open discussion on DUT</span>
+
+    <h2 class="sub">City Transitions Lab: three portfolios, one room</h2>
+    <p>On 24 September, Joshua and Sophia <a href="https://darkmatterlabs.slack.com/archives/CDLKVHW68/p1789986784076079">ran a cross-pollination session</a> for the City Transitions Lab’s three portfolios: Urban Resilience (Maria, Meggan), Resilient Food Systems (Mike, Anette), and Just Economic Transitions (Tom, Marcial). Each team had a one-pager to read beforehand, and the brief was to look for where the pieces could strengthen each other as the lab takes shape beyond Net Zero Cities.</p>
+    <p>Maria has since <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1791786330018189">pulled together the portfolio mapping method</a> she has been developing, with the learnings, city cases, and testimonials, plus a simple interactive mapping tool for cities that do not want to start in Miro. She also turned the Lund portfolio map, co-created by 50 people, into an interactive version where you can trace the full chain of connections. She is asking for input on what to do next, and for help publishing it. The links are internal for now.</p>
+    <p>Nadim, Saem, and Gurden built the NZC Intelligence Engine that the cities team is now using, which Maria thanked them for in the CTL recap.</p>
+    <span class="credit">CTL session: Joshua, Sophia &nbsp;·&nbsp; Portfolio mapping: Maria, with Simon, Eunsoo, Joshua, Anette, Tom, Alex, Joost, Meggan, and the cities team</span>
+
+    <h2 class="sub">Launch of the Unfurling Collective</h2>
+    <p>After years of contributions and condition-building from Annette and Indy alongside many peers in our field, the Unfurling Collective is now confirmed and Dm is one of the founding members: a UK-based network to build strategic muscle in the field of Alternative Futures, with an initial £8m in investment from JRF, governed via a many-to-many approach. The public launch will happen in the New Year. The <a href="https://darkmatterlabs.slack.com/archives/CTZ4994PR/p1791375102951179">final trustee pass was confirmed</a> in early October, and money is due to move to the fiscal host in December.</p>
+    <span class="credit">With: Annette, Indy &nbsp;·&nbsp; Earlier groundwork with JRF: Emma</span>
+
+    <h2 class="sub">Power Project UK</h2>
+    <!-- DRAFT NOTE LEFT IN THE DOCX, REMOVED FROM THE PAGE: [TO CONFIRM WITH ANNETTE / FANG BEFORE PUBLISHING: has funding been secured, and how much can we say?] -->
+    <p>Power Project UK is live as one of xCO’s positions. In September the team worked through the legal and financial structure for a peer-led process to resource next-generation civic power organisations, and in Berlin Fang ran a session on how Civic Ledger links to the Power Project work in the UK.</p>
+    <span class="credit">xCO position &nbsp;·&nbsp; With: Fang and partners</span>
+
+    <h2 class="sub">Hackney asks about 2040</h2>
+    <p>This one came out of the London food work: Hackney’s strategy team, who are writing the borough plan alongside a new Local Plan, <a href="https://darkmatterlabs.slack.com/archives/C055NB3J9UN/p1790240208562759">asked Adam</a> whether Dm could support a strategic foresight session in November on what Hackney might be in 2040. The request came from the new Green administration’s Cabinet, and they were particularly taken with the Lund example. Adam is looking for people who want to work on it with him, and Joost noted we are still on the GLA framework, which may help with procurement.</p>
+    <span class="credit">Lead: Adam &nbsp;·&nbsp; With: Joost and the Lund team</span>
+
+    <h2 class="sub">Also this month</h2>
+    <ul class="body-list">
+      <li>Gurden <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1789053495523009">updated darkmatterlabs.org</a>: the team page now has an alumni section, project pages show past team members, projects can be filtered by lab, arc, or studio, and the arc and lab renames are live. The alumni thread turned into a good group effort to find everyone since 2016.</li>
+      <li>Adam has been building HTML pages to coordinate the London food work as it happens, and is <a href="https://darkmatterlabs.slack.com/archives/C5H7FKXLN/p1790239691704439">asking for prompting tips</a> to make them feel less AI-made. His <a href="https://food.darkmatterlabs.org/library.html">library</a> holds most of it.</li>
+      <li>Calvin soft-launched a piece on Mutual Leases, a pathway being built with the House of Annetta, at the London Wide Web network, and has <a href="https://darkmatterlabs.slack.com/archives/C0AUXLVRSMC/p1790787287152399">asked for two peer reviewers</a> with property or community asset experience.</li>
+      <li>Michelle shared <a href="https://darkmatterlabs.slack.com/archives/CTZ4994PR/p1791547471753389">an update on Learning Systems</a>, including a prototype for holding large amounts of learning data collectively and organising it into trees of questions.</li>
+      <li>The European Environment Agency has <a href="https://darkmatterlabs.slack.com/archives/C5G0HJU4V/p1791555134516789">asked Dm for a proposal</a> under our framework agreement, on nature-inclusive governance and the values attached to nature. Leon is looking for people who want in.</li>
+      <li>Annette <a href="https://darkmatterlabs.slack.com/archives/C055NB3J9UN/p1791537424992619">shared an update from the Collaborative</a>: a €5m OAK round, with proposals of €100k to €400k involving at least three organisations. No need to develop ideas further until the strategic frames are set.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ GLA ═══ -->
+<section class="reflective">
+  <div class="wrap">
+    <span class="eyebrow">One we didn’t win</span>
+    <h1 class="section-title">The GLA data centre bid</h1>
+    <p>Max <a href="https://darkmatterlabs.slack.com/archives/C5G0HJU4V/p1790846086562739">let us know</a> that we were not selected for the GLA data centre vision, the bid with Arup. He has asked for the reasoning.</p>
+    <p>He also shared what it cost us: eleven and a half hours in total between him and Gurden, against a negotiated £50k share of a £142k assignment. The process was efficient, and it opened up two new teams at Arup that Max describes as both competent and sympathetic to what we do.</p>
+    <span class="credit">Bid: Max, Gurden &nbsp;·&nbsp; Partner: Arup</span>
+  </div>
+</section>
+
+<!-- ═══ FINANCE ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Finance</span>
+    <h1 class="section-title">July 2026 financial update</h1>
+    <p>Andrea <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1789399101932349">shared July’s results</a> on 14 September (<a href="https://docs.google.com/spreadsheets/d/1-GPhQ5QVJwyweyloGIcEOzGgMZqrixLw/edit">accounts</a>, <a href="https://docs.google.com/spreadsheets/d/13-pqKakV_2pZQGrabB-BfKgJF9Pn65DGjzb0Xi7dLA4/edit">project income analysis</a>). July was a poor month, mostly because of holidays, and Andrea and Alizé hope that is where the main impact lands rather than August too.</p>
+    <div class="table-scroll">
+      <table class="finance">
+        <thead>
+          <tr><th>Entity</th><th>July result</th><th>Year to date</th><th>Net assets</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>UK Holding</td><td>£nil</td><td>£107k</td><td>not stated</td></tr>
+          <tr><td>UK</td><td>£(34)k loss</td><td>£283k</td><td>£387k</td></tr>
+          <tr><td>BV (Netherlands)</td><td>£(63)k loss</td><td>£(106)k</td><td>£(112)k</td></tr>
+          <tr><td>South Korea</td><td>£(14)k loss</td><td>£(9)k</td><td>£(53)k</td></tr>
+          <tr><td>Sweden</td><td>£(4)k loss</td><td>£(18)k</td><td>£3k</td></tr>
+          <tr class="total"><td>Group</td><td>£(115)k loss</td><td>£110k surplus</td><td>£340k</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The year to date is still in surplus at £110k, with group net assets of £340k. A few entity notes: Dm is looking at forming a not-for-profit association in Sweden so the entity can apply for larger funding without having to contribute co-funding. South Korea is expected to return to profit as project work advances. A taskforce is working on the BV’s solvency and liquidity.</p>
+    <p>The update was late because Finance is stretched, with a Net Zero Cities audit flagged at short notice and Rob’s retirement both landing at once.</p>
+    <span class="credit">Contact: Andrea, Alizé, Louise, Helen</span>
+  </div>
+</section>
+
+<!-- ═══ PEOPLE ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">People</span>
+    <h1 class="section-title">Comings and goings</h1>
+
+    <h2 class="sub">Theo is moving on</h2>
+    <p>Theo <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1791282592244579">shared on 6 October</a> that he will not be coming back after his paternity leave. He is joining La DIHAL, the French government department that implements housing first policy nationally, as a product owner on an app that aims to reduce evictions from rent arrears by identifying households earlier and intervening sooner. He will be working out of the Grande Arche de la Défense.</p>
+    <p>He wrote openly about how he came to Dm four years ago: he had lost his job as a social worker after reporting working conditions to the service’s funders, he knew of Dm from Indy’s talks in Adelaide, and he applied on a whim through the Dm Discord. He thanked Gurden, Romy, and Axel for believing in him at the start.</p>
+    <blockquote>
+      <p>Something about Dm’s work on systems change and my experience working in broken systems clicked and meant I was able to be honest about my experiences and motivations.</p>
+      <cite>— Theo</cite>
+    </blockquote>
+    <p>The thread filled up fast. Eunsoo wrote that Theo had helped shape the culture and norms around how Dm thinks about and builds technology, and that the civic tech calls will not be the same. Andrea thanked him for being a partner in crime on transfer pricing. Ana said that helping to prevent evictions feels especially important seen from Madrid right now. He is staying in the alumni channels, and his contact details are in his post if you are ever in Paris. Thank you, Theo.</p>
+
+    <h2 class="sub">Welcome, new Member 🐣</h2>
+    <p>Anna Rowell has joined as a Dm Member, bringing policy expertise to our Net Zero Cities work. She has already joined the City Transitions Lab cross-pollination session in September, so say hello if you have not met her yet.</p>
+
+    <h2 class="sub">Also joining</h2>
+    <p>Nicolás, Darko, and Sarah have joined the xCO team, more on this soon! Nicolás is part of the xCO heat cohort, and <a href="https://darkmatterlabs.slack.com/archives/C0C2G3TC448/p1790848731481119">Prateek welcomed him</a> with the outcomes of the Berlin and Mumbai risk clinics as reading.</p>
+  </div>
+</section>
+
+<!-- ═══ RENDEZ-VOUS ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Team moments</span>
+    <h1 class="section-title">Dm rendez-vous 🌍</h1>
+    <p>Where people crossed paths in person:</p>
+    <div class="rendezvous">
+      <div class="rz">
+        <span class="flag">🇩🇪</span>
+        <h4>Berlin, 8–10 October</h4>
+        <p>Eunji, Koo, Fang, Indy, Louise, Malik, and Oliver at medulla with the Berlin crew for working sessions, shared lunches, and two evenings out.</p>
+      </div>
+      <div class="rz">
+        <span class="flag">🌡️</span>
+        <h4>Berlin, 19 September</h4>
+        <p>The Public Vitality Camp came to medulla for the day, with the Heat Risk Clinic in the afternoon and a water governance session and field trip led by Prateek.</p>
+      </div>
+      <div class="rz">
+        <span class="flag">🇪🇸</span>
+        <h4>Madrid</h4>
+        <p>Indy and Malik at the Spanish impact investors event.</p>
+      </div>
+      <div class="rz">
+        <span class="flag">🇬🇧</span>
+        <h4>The UK</h4>
+        <p>Annette at the Unfurling residential with the other partner organisations, and Annette, Indy, and Adam at a Clean Language training day with Caitlin Walker in London on 30 September.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ASKS ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">A few asks</span>
+    <h1 class="section-title">Things that need you</h1>
+    <ul class="body-list">
+      <li><a href="https://form.typeform.com/to/qUjAAXiJ"><strong>Dm Signals form</strong></a>: tell Health Keepers what you are noticing. Stewards are asked to fill it in at least once a month; everyone is welcome.</li>
+      <li><a href="https://docs.google.com/presentation/d/12D2rwimKqo4E0zXkopqE1asvLiZyRAI7ysRhpikzhN4/edit"><strong>Experiment support</strong></a>: the hunches deck still has a slide where you can offer help to a cycle two experiment.</li>
+      <li><a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1789053495523009"><strong>Your projects on the website</strong></a>: xCO, RiskSense, Camden Food, RZ, and Civic Ledger are still missing from darkmatterlabs.org. Gurden needs a title, subtitle, date, description, cover image, links, team, and partners. He is also looking for someone to pair-edit the homepage copy.</li>
+      <li><a href="https://darkmatterlabs.slack.com/archives/C0AUXLVRSMC/p1790787287152399"><strong>Mutual Leases peer review</strong></a>: Calvin needs two light-touch reviewers.</li>
+      <li>Hackney 2040 and the EEA proposal: Adam and Leon are both looking for people.</li>
+    </ul>
+    <div class="card">
+      <span class="card-label">Streamtime, with a number on it this time</span>
+      <p>Cycle two has set a target of 90% of time logged every month by the end of November. Log by day three of the next month, and if you hold a project, make sure there is a secondary holder who can update its completion when you cannot.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LOOKING AHEAD ═══ -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Looking ahead</span>
+    <h1 class="section-title">What’s next</h1>
+    <h2 class="sub">Coming up</h2>
+    <ul class="events">
+      <li><span class="date">Mid-October</span><span class="what">Calvin’s Mutual Leases piece due to publish on Medium or Substack</span></li>
+      <li><span class="date">November</span><span class="what">the Hackney 2040 foresight session</span></li>
+      <li><span class="date">November</span><span class="what">the Collaborative distributes its OAK funding round</span></li>
+      <li><span class="date">18 November</span><span class="what">next 10x100</span></li>
+      <li><span class="date">End of November</span><span class="what">cycle two of change orchestration ends</span></li>
+      <li><span class="date">Until the end of the year</span><span class="what">more events in xCO’s Seeding Optionality series at medulla</span></li>
+    </ul>
+
+    <h2 class="sub">In Issue #8</h2>
+    <ul class="body-list">
+      <li>What the first fortnights of Dm Signals turn up</li>
+      <li>Where Hackney 2040 and the EEA proposal land</li>
+      <li>RZ’s first cohort, as the work gets going</li>
+      <li>August’s financial results</li>
+      <li>More rendez-vous, and whatever you tag with #addtonewsletter</li>
+    </ul>
+
+    <div class="card">
+      <span class="card-label">One more thing</span>
+      <p>Use #addtonewsletter in any Slack channel to flag something for the next issue.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SIGN-OFF ═══ -->
+<div class="wrap">
+  <div class="signoff">
+    <p>Questions or feedback? Drop a note in #org-announcements.</p>
+    <p class="sign-italic"><em>See you next month,</em></p>
+    <p class="sign-team">The Dm Dispatch Team</p>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="mark">
+      <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dark Matter Labs">
+        <rect x="0" y="0" width="40" height="40" rx="2" fill="#ffffff"/>
+        <text x="8" y="29" font-family="'SaansMedium', system-ui, sans-serif" font-size="20" font-weight="500" fill="#111112">Dm</text>
+        <text x="30.5" y="12" font-family="'SaansMedium', system-ui, sans-serif" font-size="7" font-weight="500" fill="#111112">07</text>
+      </svg>
+    </div>
+    <p>Issue #7 — September 2026 — Dark Matter Labs Internal Newsletter</p>
+    <p><a href="/dm-newsletter/">← Back to archive</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
