@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The Dm Dispatch — October 2026 — Issue #8</title>
+<style>
+  /* ─── Saans typeface (Dm brand face) ─────────────────────────── */
+  @font-face {
+    font-family: 'SaansRegular';
+    src: url('https://dm-style-guide.vercel.app/assets/fonts/SaansRegular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'SaansMedium';
+    src: url('https://dm-style-guide.vercel.app/assets/fonts/SaansMedium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+  }
+
+  /* ─── Design tokens ──────────────────────────────────────────── */
+  :root {
+    --canvas: #111112;
+    --paper: #ffffff;
+    --surface-raised: #252424;
+    --surface-overlay: #212121;
+    --surface-elevated: #292929;
+    --border-default: #333333;
+    --border-subtle: #353535;
+    --text-primary: #ffffff;
+    --text-secondary: #a8a8a8;
+    --text-tertiary: #7d7d7d;
+    --text-muted: #585858;
+    --accent-lavender: #a28cc6;
+    --accent-periwinkle: #737ea5;
+
+    --font-regular: 'SaansRegular', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-medium: 'SaansMedium', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    --container: 1200px;
+    --ease: 0.3s ease-in-out;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  ::selection { background: var(--accent-lavender); color: var(--canvas); }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--canvas);
+    color: var(--text-primary);
+    font-family: var(--font-regular);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  a { color: var(--accent-lavender); text-decoration: none; transition: color var(--ease); }
+  a:hover { color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ─── Masthead ───────────────────────────────────────────────── */
+  .masthead { border-bottom: 1px solid var(--border-default); padding: 40px 0 0; }
+  .masthead-bar {
+    font-family: var(--font-medium);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-periwinkle);
+    text-align: center;
+    padding-bottom: 40px;
+  }
+  .masthead-logo { display: flex; justify-content: center; margin-bottom: 28px; }
+  .masthead-title {
+    font-family: var(--font-regular);
+    font-weight: 400;
+    font-size: clamp(48px, 9vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .masthead-sub { text-align: center; color: var(--text-secondary); font-size: 18px; margin-bottom: 36px; }
+  .masthead-meta {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    border-top: 1px solid var(--border-subtle); padding: 16px 0;
+    font-family: var(--font-medium); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-tertiary);
+  }
+
+  .backlink { padding: 24px 0 0; font-size: 13px; font-family: var(--font-medium); letter-spacing: 0.04em; }
+
+  /* ─── Section rhythm ─────────────────────────────────────────── */
+  section { padding: 56px 0; border-bottom: 1px solid var(--border-default); }
+  section:last-of-type { border-bottom: none; }
+
+  .eyebrow {
+    font-family: var(--font-medium); font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent-periwinkle);
+    display: block; margin-bottom: 16px;
+  }
+
+  h1.section-title {
+    font-family: var(--font-regular); font-weight: 400;
+    font-size: clamp(28px, 4.5vw, 40px); line-height: 1.12;
+    letter-spacing: -0.02em; margin-bottom: 24px;
+  }
+
+  h2.sub {
+    font-family: var(--font-medium); font-weight: 500; font-size: 22px;
+    line-height: 1.25; letter-spacing: -0.01em; margin: 40px 0 12px;
+    color: var(--text-primary);
+  }
+
+  h3.subsub {
+    font-family: var(--font-medium); font-weight: 500; font-size: 15px;
+    letter-spacing: 0.02em; margin: 28px 0 10px; color: var(--text-primary);
+  }
+
+  p { color: var(--text-secondary); margin-bottom: 16px; }
+  p strong { color: var(--text-primary); font-family: var(--font-medium); font-weight: 500; }
+
+  ul.body-list { list-style: none; margin: 16px 0; }
+  ul.body-list li {
+    color: var(--text-secondary); padding-left: 22px; position: relative;
+    margin-bottom: 12px; line-height: 1.6;
+  }
+  ul.body-list li::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 5px; height: 5px; background: var(--accent-periwinkle); border-radius: 50%;
+  }
+  ul.body-list li strong { color: var(--text-primary); font-family: var(--font-medium); font-weight: 500; }
+
+  .credit {
+    font-family: var(--font-medium); font-size: 12px; letter-spacing: 0.03em;
+    color: var(--text-muted); margin-top: 14px; display: block; line-height: 1.6;
+  }
+  .credit a { color: var(--accent-periwinkle); }
+
+  /* ─── Callout card ───────────────────────────────────────────── */
+  .card {
+    background: var(--surface-raised); border: 1px solid var(--border-subtle);
+    border-radius: 14px; padding: 24px 26px; margin: 28px 0;
+  }
+  .card .card-label {
+    font-family: var(--font-medium); font-size: 13px; color: var(--text-primary);
+    display: block; margin-bottom: 8px;
+  }
+  .card p { margin-bottom: 0; color: var(--text-secondary); }
+  .card.accent { border-left: 2px solid var(--accent-lavender); }
+
+  /* ─── Pull quote ─────────────────────────────────────────────── */
+  blockquote { border-left: 2px solid var(--accent-lavender); padding: 6px 0 6px 26px; margin: 28px 0; }
+  blockquote p {
+    font-size: 21px; line-height: 1.45; color: var(--text-primary);
+    font-family: var(--font-regular); margin-bottom: 10px;
+  }
+  blockquote cite {
+    font-style: normal; font-family: var(--font-medium); font-size: 12px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary);
+  }
+
+  /* ─── Two-column survey split ────────────────────────────────── */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 8px; }
+  .split .col { background: var(--surface-raised); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 20px 22px; }
+  .split .col h3 { font-family: var(--font-medium); font-weight: 500; font-size: 14px; color: var(--text-primary); margin: 0 0 12px; }
+  .split .col ul { list-style: none; }
+  .split .col li { color: var(--text-secondary); font-size: 14px; line-height: 1.5; margin-bottom: 10px; padding-left: 18px; position: relative; }
+  .split .col li::before { content: ""; position: absolute; left: 0; top: 9px; width: 4px; height: 4px; border-radius: 50%; }
+  .split .up li::before { background: #6fae7f; }
+  .split .down li::before { background: var(--accent-periwinkle); }
+
+  /* ─── Breakout list ──────────────────────────────────────────── */
+  .breakouts { list-style: none; margin: 20px 0; }
+  .breakouts li {
+    padding: 14px 0; border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary); line-height: 1.55;
+  }
+  .breakouts li:last-child { border-bottom: none; }
+  .breakouts li strong { color: var(--text-primary); font-family: var(--font-medium); font-weight: 500; }
+
+  /* ─── Rendez-vous ────────────────────────────────────────────── */
+  .rendezvous { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 24px; }
+  .rendezvous .rz {
+    background: var(--surface-raised); border: 1px solid var(--border-subtle);
+    border-radius: 12px; padding: 20px; transition: border-color var(--ease);
+  }
+  .rendezvous .rz:hover { border-color: var(--accent-periwinkle); }
+  .rendezvous .rz .flag { font-size: 22px; display: block; margin-bottom: 10px; }
+  .rendezvous .rz h4 { font-family: var(--font-medium); font-weight: 500; font-size: 14px; color: var(--text-primary); margin-bottom: 6px; }
+  .rendezvous .rz p { font-size: 13px; color: var(--text-secondary); margin-bottom: 0; line-height: 1.5; }
+
+  /* ─── Events list ────────────────────────────────────────────── */
+  .events { list-style: none; margin: 20px 0; }
+  .events li {
+    display: grid; grid-template-columns: 170px 1fr; gap: 18px;
+    padding: 14px 0; border-bottom: 1px solid var(--border-subtle);
+  }
+  .events li:last-child { border-bottom: none; }
+  .events .date {
+    font-family: var(--font-medium); font-size: 12px; letter-spacing: 0.05em;
+    color: var(--accent-periwinkle); text-transform: uppercase; padding-top: 2px;
+  }
+  .events .what { color: var(--text-secondary); }
+
+  /* ─── Reflective / hard-call section ─────────────────────────── */
+  .reflective { background: linear-gradient(160deg, #000 0%, var(--surface-elevated) 100%); }
+
+  /* ─── Sign-off / footer ──────────────────────────────────────── */
+  .signoff { padding: 56px 0; }
+  .signoff .sign-italic { color: var(--text-secondary); margin-bottom: 6px; }
+  .signoff .sign-team { font-family: var(--font-medium); color: var(--text-primary); font-size: 18px; }
+
+  footer.site {
+    background: var(--canvas); border-top: 1px solid var(--border-default);
+    padding: 48px 0; text-align: center;
+    box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+  }
+  footer.site .mark { display: flex; justify-content: center; margin-bottom: 18px; }
+  footer.site p {
+    color: var(--text-muted); font-family: var(--font-medium); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  footer.site a { color: var(--accent-periwinkle); }
+
+  /* ─── Responsive ─────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .split { grid-template-columns: 1fr; }
+    .events li { grid-template-columns: 1fr; gap: 4px; }
+    .masthead-meta { flex-direction: column; align-items: center; text-align: center; }
+    section { padding: 44px 0; }
+  }
+
+    /* Finance table (from Issue 5) */
+  .table-scroll { overflow-x: auto; margin: 24px 0; }
+  table.finance { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 480px; }
+  table.finance th {
+    text-align: left; font-family: var(--font-medium); font-weight: 500;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-tertiary); padding: 12px 14px;
+    border-bottom: 1px solid var(--border-default);
+  }
+  table.finance td { padding: 12px 14px; border-bottom: 1px solid var(--border-subtle); color: var(--text-secondary); }
+  table.finance tr:last-child td { border-bottom: none; }
+  table.finance tr.total td {
+    color: var(--text-primary); font-family: var(--font-medium);
+    border-top: 1px solid var(--border-default); border-bottom: none;
+  }
+  table.finance td:first-child { color: var(--text-primary); }
+
+  /* Issue 7 additions */
+  .rendezvous { grid-template-columns: 1fr 1fr; }
+  .events .what::first-letter { text-transform: uppercase; }
+  .events li { grid-template-columns: 190px 1fr; }
+  @media (max-width: 640px) { .rendezvous { grid-template-columns: 1fr; } .events li { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-logo"><svg width="240" height="40" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dark Matter Labs"><rect x="0" y="0" width="40" height="40" rx="2" fill="#ffffff"/><text x="8" y="29" font-family="'SaansMedium', system-ui, sans-serif" font-size="20" font-weight="500" fill="#111112">Dm</text><text x="30.5" y="12" font-family="'SaansMedium', system-ui, sans-serif" font-size="7" font-weight="500" fill="#111112">08</text><text x="54" y="27" font-family="'SaansRegular', system-ui, sans-serif" font-size="19" fill="#ffffff" letter-spacing="-0.3">Dark Matter Labs</text></svg></div>
+    <div class="masthead-bar">Issue #8 &nbsp;·&nbsp; October / Early November 2026 &nbsp;·&nbsp; Dm’s 10th Anniversary Year</div>
+  </div>
+  <div style="border-top:1px solid var(--border-subtle);">
+    <div class="wrap">
+      <h1 class="masthead-title">The Dm Dispatch</h1>
+      <p class="masthead-sub">Your monthly pulse on Dark Matter Labs</p>
+      <div class="masthead-meta"><span>October 2026</span><span>Internal Newsletter</span><span>Issue #8</span></div>
+    </div>
+  </div>
+</header>
+<div class="wrap"><div class="backlink"><a href="/dm-newsletter/">← Back to archive</a></div></div>
+<main>
+<section id="welcome-back"><div class="wrap"><span class="eyebrow">Welcome back</span><h1 class="section-title">Hello team,</h1><p>October was a month of things getting out of the door. Louise’s book is out with Routledge, Anette, Amelia, and Joshua published on why proven urban solutions do not scale, and Indy’s conversation on The Great Simplification went live. HDCE has a new commission from Homes England, and the Collaborative confirmed its OAK round, with Dm among the three organisations most named in partner proposals.</p><p>Inside Dm, the Mission &amp; Pathways Stewards held their kick-off. Health Keepers set out a new way to check bids below our minimum day rate, and Olaf started regular Clean Language sessions. Dm Signals ran two more rounds. The finance section has both August and September, and the picture is better than July’s, though reserves are still thin.</p><p>This issue spans Halloween, the Day of the Dead, and the run-up to Diwali on 8 November, so the web version has a few things hidden in it. Happy hunting, and Shubh Deepavali to everyone celebrating.</p><div class="card accent"><span class="card-label">A note for contributors</span><p>Tag anything worth sharing with <strong>#addtonewsletter</strong> in any Slack channel and it will find its way into Issue #9. Nothing was tagged again this month, so everything here came from reading through the channels. A tag takes two seconds and helps a lot.</p></div></div></section>
+<section id="published"><div class="wrap"><span class="eyebrow">Published</span><h1 class="section-title">Out in the world</h1><h2 class="sub">Louise’s book: The Green Crypto Handbook</h2><p>On 27 October Louise <a href="https://darkmatterlabs.slack.com/archives/C0ACH76UA/p1793120010538579?thread_ts=1793120010.538579&amp;cid=C0ACH76UA">shared the news</a> that <a href="https://www.routledge.com/The-Green-Crypto-Handbook-Blockchain-for-Sustainability-Professionals/Rawson-Borreani/p/book/9781041258933">The Green Crypto Handbook</a> is out with Routledge. It is a handbook on blockchain and distributed ledger technologies for environmental finance, and the first chapter is open access. Robyn <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1793123728444019">reposted it to #org-hq</a> so the whole organisation would see it.</p><blockquote><p>my co-author and i have typed every single word by hand, as this was written before the LLM boom</p><cite>— Louise</cite></blockquote><span class="credit">Author: Louise Borreani, with her co-author Rawson</span><h2 class="sub">Why proven urban solutions don’t scale</h2><p>Anette, Amelia, and Joshua published <a href="https://darkmatter-labs.medium.com/why-proven-urban-solutions-dont-scale-five-misconceptions-about-scaling-and-how-to-overcome-them-7f8e310db96c">five misconceptions about scaling</a> on Medium, with versions on <a href="https://substack.com/home/post/p-221774108">Substack</a> and the NetZeroCities blog. The piece grew from a conversation with Anette about why climate solutions that work in one city stall in the next. Anette had held the reviewed draft back for months because she could not find a publishing template. <a href="https://darkmatterlabs.slack.com/archives/C0AUXLVRSMC/p1792704923743949?thread_ts=1792704923.743949&amp;cid=C0AUXLVRSMC">The thread in #help-publishing</a> is a reminder that Dm publishes on Medium and Substack and needs no template, so ask there if something of yours is stuck.</p><blockquote><p>Sometimes it’s not at all about the money. It’s about calendar time and mental space.</p><cite>— Anette, in the article</cite></blockquote><span class="credit">Authors: Anette Olovborn, Amelia Kuch, Joshua Stehr &nbsp;·&nbsp; Publishing: Gurden</span><h2 class="sub">Also out</h2><ul class="body-list"><li>Indy’s <a href="https://share.snipd.com/episode/d90c1d74-fa6b-4840-a0cf-ab4daed68c56">conversation on The Great Simplification</a> with Nate Hagens was released on 14 October. Olaf <a href="https://darkmatterlabs.slack.com/archives/C0ACH76UA/p1791984108959039?thread_ts=1791984108.959039&amp;cid=C0ACH76UA">shared it</a>, and Annette <a href="https://darkmatterlabs.slack.com/archives/C013L2TFQ5D/p1792680115858419">passed on</a> a Generative Journalism Alliance café conversation about the episode.</li><li>An interview with Gurden, Michelle, and Arianna on the many-to-many (m2m) work, recorded years ago, has now appeared in <a href="https://brot.sk/products/backstage-talks-9">Backstage Talks issue 9</a>, alongside an essay by Indy (<a href="https://darkmatterlabs.slack.com/archives/C013L2TFQ5D/p1792677144278899?thread_ts=1792677144.278899&amp;cid=C013L2TFQ5D">thread</a>).</li><li>Gurden wrote up <a href="https://civilizationaloptionality.substack.com/p/how-our-shape-of-collaboration-is">how our shape of collaboration is changing</a> on the Civilizational Optionality Substack. Fang now sends it to Power Project partners as background (<a href="https://darkmatterlabs.slack.com/archives/C0B7V715JBF/p1792671468289559">thread</a>).</li><li>Nadim and Gyorgyi released a <a href="https://www.youtube.com/watch?v=VlgjeKfyIXw">Governing Together video</a> (<a href="https://darkmatterlabs.slack.com/archives/C013L2TFQ5D/p1791908689620939">thread</a>).</li></ul></div></section>
+<section id="new-work"><div class="wrap"><span class="eyebrow">New work</span><h1 class="section-title">HDCE and Homes England</h1><p>On 15 October Max <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1792082417365989?thread_ts=1792082417.365989&amp;cid=CC80ATV42">announced</a> that Homes England’s Strategy and Innovation team has commissioned the Homes that Don’t Cost the Earth (HDCE) partnership of Arup, IIPP, Rising Tide, and Dm. The work runs from October to the end of February 2027 and looks at how more homes can come from the stock we already have. It covers national modelling, delivery prototypes designed with Homes England, and roundtables with investors and local authorities. Max traced the commission back to a Challenge Works mission-shaping process and a Homes England roundtable.</p><blockquote><p>fundraising is like dating, the first 3 dates are only about getting the next one</p><cite>— Max, passing on a fundraising specialist’s advice</cite></blockquote><p>The kick-off took place on 29 October. HDCE’s work is also drawing invitations. Max has been asked to lecture at the Edinburgh Architectural Association in mid-November, and the GLA’s Land and Property team has asked HDCE to present to its development team (<a href="https://darkmatterlabs.slack.com/archives/C08045LUXJS/p1792688378184529?thread_ts=1792688378.184529&amp;cid=C08045LUXJS">thread</a>).</p><span class="credit">Project manager: Max &nbsp;·&nbsp; Team: Meggan, Oliver &nbsp;·&nbsp; Thanks: Jorn &nbsp;·&nbsp; Partners: Arup, IIPP, Rising Tide</span></div></section>
+<section id="change-orchestration"><div class="wrap"><span class="eyebrow">Change orchestration</span><h1 class="section-title">Cycle two, five weeks from the end</h1><p>Cycle two of change orchestration runs to the end of November. On 26 October Eunsoo <a href="https://darkmatterlabs.slack.com/archives/C0AJ5U9DA8N/p1793028251866589">posted a synthesis</a> of the 14 October learning session with experiment leads (<a href="https://app.notion.com/p/darkmatterlabs/October-learning-session-405190f347a280138646d0200cb0dc63?source=copy_link">full notes in Notion</a>). Capacity is the real limit, and the session asked plainly whether running 17 experiments at once is too many. The hardest problems sit between experiments, so the next step is to test them in clusters, starting with operational flexibility. Health Keepers, the first Dm Signals, Clean Language practice, and time logging are working. Calendar reminders for time logging are not, and Steward momentum has faded since the pop-up.</p><blockquote><p>AI is raising both capability and risk.</p><cite>— Eunsoo, in the October synthesis</cite></blockquote><h2 class="sub">The Stewards get going</h2><p>The Mission &amp; Pathways Stewards held their kick-off on 20 October, as the template for the other circles. The proposal that drew the most requests was a single view of where Dm’s work is going, past, current, and future. The next steps:</p><ul class="body-list"><li>a Mission &amp; Pathways handbook</li><li>a website brand audit (Anahat)</li><li>scaling the Dm commons wiki (Gurden)</li><li>a funded-time target per role (Louise, Eunsoo)</li><li>a briefing on spin-in and spin-out (Jason)</li><li>automated Streamtime nudges</li><li>people holding and offboarding documents (Iyana)</li></ul><p>If you still have questions about what Stewards and Health Keepers are, Eunsoo has <a href="https://darkmatterlabs.slack.com/archives/C0AJ5U9DA8N/p1792677174545959">published the Cycle 2 FAQ</a> from the August and September Q&amp;As, on the <a href="https://dark-matter-labs.github.io/change-orchestration/#qa">change orchestration site</a>. There is also a <a href="https://dark-matter-labs.github.io/change-orchestration/#quiz">quiz</a>, with a leaderboard.</p><h2 class="sub">A check before below-minimum bids</h2><p>Health Keepers <a href="https://darkmatterlabs.slack.com/archives/C5G0HJU4V/p1793096098354089?thread_ts=1793096098.354089&amp;cid=C5G0HJU4V">agreed a new protocol</a>. Some work reports on costs (Horizon Europe, for example) or pays below the £626 a day minimum. Before you express interest in it, post a short note and tag the Mission &amp; Pathways Stewards. A Steward replies within 72 hours with support, support with conditions, or a veto with a reason. Unless there is a veto, the decision stays with you. Annette, Jorn, Adam, and Leon are the first Stewards testing it, and it will be reviewed in January 2027. It came out of the GGC survey, where 47% chose ‘portfolio hedging’.</p><blockquote><p>Not sure if it applies? Post anyway - helps make uncertainties visible.</p><cite>— Eunsoo, for Health Keepers</cite></blockquote><h2 class="sub">Hiring and relocation pause in France, Germany, and Spain</h2><p>On 12 October Sophia <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1791799277883619">shared a Health Keepers letter</a>: new hires and relocations into France, Germany, and Spain are paused while Health Keepers review local tax structures. Day-to-day work does not change. If this affects you, talk to your People Host or a Health Keeper.</p><h2 class="sub">Clean Language sessions</h2><p>Olaf has <a href="https://darkmatterlabs.slack.com/archives/C0AJ5U9DA8N/p1791892138944739">started regular Thursday sessions</a> in Clean Language and drama-free practice, alternating between 10am and 2pm, as part of the self-reflection experiment. The aim is better difficult conversations and knowing each other and the mission better. A Wednesday slot is coming after requests. He <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1792416154501969">shared what the first session turned up</a>, and the third was <a href="https://darkmatterlabs.slack.com/archives/C014AAKRJKY/p1793263620628989">announced on 29 October</a>.</p><blockquote><p>when DML is a force to be reckoned with, up close it might feel intimidating sometimes</p><cite>— Olaf, on a discovery from the first session</cite></blockquote><p>Alicia, Eunsoo, and Calvin have also published a <a href="https://darkmatterlabs.slack.com/archives/C014AAKRJKY/p1793014818721769">short guide to Dm Downloads and Uploads 2.0</a>, whole-team calls to share work and crowdsource insight. They hope for at least one between each 10x100.</p><span class="credit">Change Orchestrator: Eunsoo &nbsp;·&nbsp; Health Keepers: Sophia, Annette, Adam, Andrea, Jorn, Leon, Prateek, Eunsoo, Jason &nbsp;·&nbsp; Clean Language: Olaf &nbsp;·&nbsp; Downloads and Uploads: Alicia, Eunsoo, Calvin</span></div></section>
+<section id="dm-signals"><div class="wrap"><span class="eyebrow">Dm Signals</span><h1 class="section-title">What Signals turned up</h1><p>Dm Signals now runs every fortnight. Eunsoo opened rounds on <a href="https://darkmatterlabs.slack.com/archives/C0AJ5U9DA8N/p1792155694282389">16 October</a> and <a href="https://darkmatterlabs.slack.com/archives/C0AJ5U9DA8N/p1793365419995429">30 October</a>, and Health Keepers reviewed them on 19 October and 2 November. The 6–19 October round had nine inputs and tested AI-generated digests alongside human responses. The 22 October – 2 November round had eight responses, seven of them from Stewards.</p><p>The latest round found five themes. There are two speeds, with energy in xCO and heaviness in Dm. Crisis has become the operating rhythm. People asked who decides who gets resourced, and they named role gaps and colleagues going silent. There were positive signals too, about agency and standing. Health Keepers are considering a session on the Dm and xCO relationship at the 10x100 on 18 November.</p><p>Both rounds drew mostly on Stewards. If you have not filled in <a href="https://form.typeform.com/to/qUjAAXiJ">the form</a> yet, it takes a couple of minutes, and every question is optional.</p><span class="credit">Signals and synthesis: Eunsoo &nbsp;·&nbsp; Review: Health Keepers</span></div></section>
+<section id="projects"><div class="wrap"><span class="eyebrow">Projects</span><h1 class="section-title">Project highlights</h1><h2 class="sub">The Collaborative: OAK round confirmed</h2><p>The OAK funding round is confirmed: €5m in total, with €2.325m to distribute in November. After a rushed call for ideas, Dm <a href="https://darkmatterlabs.slack.com/archives/C055NB3J9UN/p1793198170300589">submitted two</a>: pooling Collaborative input into place-based bioregional demonstrators, and pop-up studios for scoping domains together. Dm is also named in many partners’ proposals, and on 4 November Annette <a href="https://darkmatterlabs.slack.com/archives/C055NB3J9UN/p1793819572382209?thread_ts=1793819572.382209&amp;cid=C055NB3J9UN">reported</a> that we were among the three organisations named most often. Next come two weeks of scoping, two of proposal writing, and an in-person retreat to allocate, which Annette will attend for Dm.</p><span class="credit">Lead for Dm in the Collaborative: Annette</span><h2 class="sub">Next Futures</h2><p>Mission &amp; Pathways is getting ready to test <a href="https://pathways.darkmatterlabs.org/futures/">Next Futures</a> with funders: a fund for Dm’s next ten years of exploration. Adam is <a href="https://darkmatterlabs.slack.com/archives/C055NB3J9UN/p1793373568372719?thread_ts=1793373568.372719&amp;cid=C055NB3J9UN">collecting ‘long arcs’</a>, small pieces of work that grew into something large, such as Beyond the Rules with Lankelly Chase, TreesAI, or built environment work growing into HDCE.</p><blockquote><p>Ten years of DM got us here. This is how we fund the next ten.</p><cite>— Next Futures</cite></blockquote><span class="credit">Contact: Adam</span><h2 class="sub">Madrid 2050°: schools and heat</h2><p>Alicia ran a <a href="https://darkmatterlabs.slack.com/archives/C0ACK8X8678/p1793805629936769">workshop on 4 November</a> with help from Sole and Andrea L. On 10 November the team meets municipal staff from three districts to agree criteria for adapting school yards to heat. Sofia has built a <a href="https://madrid-2050-escuelas.netlify.app/">first schools dashboard</a>, and Oliver has published demonstrator pages for <a href="https://dark-matter-labs.github.io/oliver-llm-wiki/campus-sur-demonstrator.html">Campus Sur</a>. Alicia is also invited to a roundtable at <a href="https://www.conama.org/">CONAMA</a> on 3 December.</p><blockquote><p>a person we didn’t know asked us if we worked on other climate risks as well because she loved our workshop</p><cite>— Alicia</cite></blockquote><span class="credit">Lead: Alicia &nbsp;·&nbsp; Team: Sofia, Oliver, Malik, Sole, Andrea L.</span><h2 class="sub">Net Zero Cities</h2><p>Several of the team were at the NetZeroCities consortium meeting in Wrocław. Joshua then ran a <a href="https://darkmatterlabs.slack.com/archives/C02FLCUBS9J/p1793272101053949">download on 29 October</a> on what they brought back, including resilience as a lens across cities and Dm’s role as a critical friend. In Gothenburg, Maria <a href="https://darkmatterlabs.slack.com/archives/C02FLCUBS9J/p1792674820967569">ran a workshop</a> using Governing Together’s metaphor of fertile soil.</p><blockquote><p>I treated all the 72 initiatives on the walls as seeds, and we discussed the mix of seeds, conditions for growth and what depletes the soil.</p><cite>— Maria</cite></blockquote><p>November is evaluation month: Climate-KIC asked Dm to help review 50 city reports across three cohorts (<a href="https://darkmatterlabs.slack.com/archives/C02FLCUBS9J/p1793274488896379?thread_ts=1793274488.896379&amp;cid=C02FLCUBS9J">thread</a>). Joost has also called for a <a href="https://darkmatterlabs.slack.com/archives/C02FLCUBS9J/p1793088007037849?thread_ts=1793088007.037849&amp;cid=C02FLCUBS9J">last push on NZC communications</a> before the end of November. Tom says the Finnish Policy Lab is ‘(finally) ready to be talked about’.</p><span class="credit">Arc: Net Zero Cities &nbsp;·&nbsp; Contacts: Joost, Joshua, Maria, Nadim</span><h2 class="sub">The Mumbai Risk Clinic travels to Nairobi</h2><p>A team in Nairobi used the Mumbai Risk Clinic method and materials that Siddhi shared, and has drafted a report on communities along the Nairobi and Mathare rivers (<a href="https://darkmatterlabs.slack.com/archives/C09DSGTNGMC/p1793013929919559?thread_ts=1793013929.919559&amp;cid=C09DSGTNGMC">thread</a>). Prateek has set up a Risk Lab wiki and shared a <a href="https://dark-matter-labs.github.io/ocean-studio-wiki/banos/cascade-model.html">cascade model</a> for BANOS.</p><blockquote><p>They’ve also adapted optionality locally into zones where households collapses into zero-choice traps or get squeezed (kubanwa).</p><cite>— Siddhi</cite></blockquote><span class="credit">Risk Intelligence Lab: Siddhi, Prateek, Oliver</span><h2 class="sub">Sheffield</h2><p>Annette was in Sheffield to refresh the portfolio with VAS and OPUS, who now co-lead the Partnership Lab, with Annette on its stewardship board. Raj reports that James L has secured initial funding from Aviva for part of the work, and Vlad has shared a plan for a Sheffield Data Co-operative and a public dashboard (<a href="https://darkmatterlabs.slack.com/archives/C06PHUV2E93/p1793036649398569?thread_ts=1793036649.398569&amp;cid=C06PHUV2E93">thread</a>).</p><span class="credit">Contacts: Annette, Raj, Vlad</span><h2 class="sub">Food</h2><p>Eskilstuna held <a href="https://darkmatterlabs.slack.com/archives/C01NCA7SLCA/p1793179657609079">another dinner</a> followed by a portfolio workshop on food and education. Siddhi presented the Camden food work on a civic-resilience call, and the feedback was all positive (<a href="https://darkmatterlabs.slack.com/archives/C0AM884E1EZ/p1792665354463149?thread_ts=1792590246.746579&amp;cid=C0AM884E1EZ">thread</a>).</p><blockquote><p>everyone loved and they wanna do more</p><cite>— Aleksander, on Eskilstuna</cite></blockquote><span class="credit">Contacts: Aleksander, Anette, Siddhi, Mike</span></div></section>
+<section id="still-to-come" class="reflective"><div class="wrap"><span class="eyebrow">Still to come</span><h1 class="section-title">What we have not heard yet</h1><p>Issue #7 promised news on a few things that have not surfaced in Slack, Notion, or Drive this month. They are the Hackney 2040 foresight session, the EEA proposal, RZ Studio’s first cohort, Calvin’s Mutual Leases piece, the Design at Dm survey, and funding for Power Project UK. If you hold any of these, tag the update with <strong>#addtonewsletter</strong> and it will lead Issue #9.</p></div></section>
+<section id="finance"><div class="wrap"><span class="eyebrow">Finance</span><h1 class="section-title">August and September results</h1><p>Andrea <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1793830942560829">shared September’s results</a> on 4 November (<a href="https://docs.google.com/document/d/1PgbtGWuI5sJKc3jFA4vy_2HM2fzivoas/edit">September summary</a>, <a href="https://drive.google.com/file/d/1KO6GBja30ouqndRXIDpfHuXUz2R5pYXe/view?usp=drivesdk">August summary</a>, <a href="https://docs.google.com/spreadsheets/u/0/d/1-GPhQ5QVJwyweyloGIcEOzGgMZqrixLw/edit">Group accounts</a>, <a href="https://docs.google.com/spreadsheets/u/0/d/1pasIEdhm0pJegBQVv2g_d3dF69fZ5udvNaSKQ4MEnTA/edit">income analysis</a>). In both months the Group results were markedly better than June and July.</p><div class="table-scroll"><table class="finance"><thead><tr><th></th><th>August</th><th>September</th></tr></thead><tbody><tr><td>Group surplus</td><td>£41k (forecast £209k)</td><td>£60k</td></tr><tr><td>Year to date</td><td>£118k</td><td>£201k</td></tr><tr><td>Closing Group net assets</td><td>£371k</td><td>£430k</td></tr></tbody></table></div><p>September’s biggest earners were xCO Options at £202k (£102k of it Madrid 2050°), NZC at £116k, the Viable Cities Transition Lab at £38k, and Laudes at £36k. August’s result was helped by NZC recognising £211k of earnings after a clean-up of project data, including Louise’s clean-up of Streamtime records.</p><p>Two things to know. Group reserves cover a little more than one month of overheads, which average about £320k a month, against a minimum target of three months. And South Korea remains the main concern: a full re-forecast is under way. Sweden is likely to access Vinnova funding without co-financing, but will need support for several more months.</p><span class="credit">Contact: Andrea, Alizé, Louise</span></div></section>
+<section id="people"><div class="wrap"><span class="eyebrow">People</span><h1 class="section-title">Comings and goings</h1><p>No arrivals, farewells, or new babies were announced in the org-wide channels this month. If we missed you, tell us and we will put it right in Issue #9.</p></div></section>
+<section id="team-moments"><div class="wrap"><span class="eyebrow">Team moments</span><h1 class="section-title">Dm rendez-vous</h1><p>Where people crossed paths in person:</p><div class="rendezvous"><div class="rz"><span class="flag">🇩🇪</span><h4>Berlin, at medulla</h4><p>Two <a href="https://darkmatterlabs.slack.com/archives/C0B0J0AE7C5/p1792425946604629">Get to Know Each Other sessions and a picture day</a> (19 and 21 October) started a member wall. The second Seeding Optionality evening on 28 October was a <a href="https://darkmatterlabs.slack.com/archives/C0B0J0AE7C5/p1793280434013669">soundscape listening event</a> drawing on the Planetary Compendium, and the People of Medulla campaign <a href="https://darkmatterlabs.slack.com/archives/C0B0J0AE7C5/p1793707487291049">went live on 3 November</a>.</p></div><div class="rz"><span class="flag">🇵🇱</span><h4>Wrocław</h4><p>Dm colleagues at the NetZeroCities consortium meeting, with a farm visit and a workshop.</p></div><div class="rz"><span class="flag">🇬🇧</span><h4>Sheffield and QCF</h4><p>Annette with VAS and OPUS in Sheffield. Annette, Indy, and Robyn met QCF in person on 4 November (<a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1793732144595489?thread_ts=1793581204.975179&amp;cid=CC80ATV42">thread</a>).</p></div><div class="rz"><span class="flag">🇪🇸🇸🇪</span><h4>Madrid, Gothenburg, and Eskilstuna</h4><p>Alicia’s schools workshop in Madrid, Maria’s fertile soil workshop in Gothenburg, and Aleksander and Anette at the Eskilstuna dinner and portfolio workshop.</p></div></div></div></section>
+<section id="elsewhere"><div class="wrap"><span class="eyebrow">Elsewhere</span><h1 class="section-title">Good news from outside our walls</h1><p>A few things from the wider world that lifted spirits in the window. Tap a card to turn it over.</p><div class="flipgrid"><div class="flip" role="button" tabindex="0" aria-pressed="false" aria-label="Serbia’s students win: turn over"><div class="flip-inner"><div class="flip-front"><span class="flip-icon">🇷🇸</span><h4>Serbia’s students win</h4><span class="flip-hint">Tap to turn over</span></div><div class="flip-back"><p>The student-led Student List <a href="https://www.npr.org/2026/10/26/nx-s1-6016298/serbia-student-list-vucic-election">won Serbia’s snap election</a> on 25 October, and Aleksandar Vučić <a href="https://www.cnn.com/2026/10/25/europe/serbian-strongman-vucic-concedes-defeat-to-student-led-movement-intl-latam">conceded defeat</a>.</p></div></div></div><div class="flip" role="button" tabindex="0" aria-pressed="false" aria-label="Lula’s fourth term: turn over"><div class="flip-inner"><div class="flip-front"><span class="flip-icon">🇧🇷</span><h4>Lula’s fourth term</h4><span class="flip-hint">Tap to turn over</span></div><div class="flip-back"><p>Lula <a href="https://www.npr.org/2026/10/25/nx-s1-6016299/brazil-lula-bolsonaro-election">won Brazil’s runoff</a> on 25 October with more than 51% of the vote, against Flávio Bolsonaro.</p></div></div></div><div class="flip" role="button" tabindex="0" aria-pressed="false" aria-label="A big night for US Democrats: turn over"><div class="flip-inner"><div class="flip-front"><span class="flip-icon">🇺🇸</span><h4>A big night for US Democrats</h4><span class="flip-hint">Tap to turn over</span></div><div class="flip-back"><p>In the 3 November midterms, Democrats <a href="https://www.cbsnews.com/live-updates/house-election-results-2026/">won control of the House</a> and <a href="https://www.cbsnews.com/live-updates/senate-election-results-2026/">the Senate</a>, with some races still being counted.</p></div></div></div><div class="flip" role="button" tabindex="0" aria-pressed="false" aria-label="Students on the streets: turn over"><div class="flip-inner"><div class="flip-front"><span class="flip-icon">🎓</span><h4>Students on the streets</h4><span class="flip-hint">Tap to turn over</span></div><div class="flip-back"><p>Students marched against education cuts and housing costs across Europe, from <a href="https://en.wikipedia.org/wiki/2026_French_student_protests">France</a> to Belgium, Italy, Austria, and Greece.</p></div></div></div></div><span class="credit">Sources: NPR, CNN, CBS News, Wikipedia</span></div></section>
+<section id="a-few-asks"><div class="wrap"><span class="eyebrow">A few asks</span><h1 class="section-title">Things that need you</h1><ul class="body-list"><li>Dm Signals: <a href="https://form.typeform.com/to/qUjAAXiJ">fill in the form</a>. Health Keepers especially want to hear from people who are not Stewards.</li><li>Long arcs for Next Futures: tell Adam about a small piece of work that grew into something large (<a href="https://darkmatterlabs.slack.com/archives/C055NB3J9UN/p1793373568372719?thread_ts=1793373568.372719&amp;cid=C055NB3J9UN">thread</a>).</li><li>GLA architecture and urbanism framework: applications close on 8 December, and Jack cannot hold the application this time. Max and Jack are looking at it (<a href="https://darkmatterlabs.slack.com/archives/C5G0HJU4V/p1793265728355849?thread_ts=1793265728.355849&amp;cid=C5G0HJU4V">thread</a>).</li><li>A systems innovation panel for cities on 26 November or 1 December: Nadim is <a href="https://darkmatterlabs.slack.com/archives/CDLKVHW68/p1792755621654669">looking for a speaker</a>.</li><li>Downloads and Uploads: nominate a team in #org-how-we-learn.</li><li>The d.INO community: share a moment when the wiki surprised you, or a question, in <a href="https://darkmatterlabs.slack.com/archives/C0B7V715JBF/p1793632331792829">#prj-dino-community</a>.</li></ul><div class="card accent"><span class="card-label">Streamtime</span><p>The target for cycle two is 90% of time logged every month by the end of November. Eunsoo <a href="https://darkmatterlabs.slack.com/archives/CC80ATV42/p1792584145794419?thread_ts=1791960147.116499&amp;cid=CC80ATV42">reported 90% for September</a>, though not by the deadline. Completion rates drive how each entity recognises income, so please log October now if you have not.</p></div></div></section>
+<section id="looking-ahead"><div class="wrap"><span class="eyebrow">Looking ahead</span><h1 class="section-title">What’s next</h1><h2 class="sub">Coming up</h2><ul class="events"><li><span class="date">8 November</span><span class="what">Diwali, the festival of lights</span></li><li><span class="date">10 November</span><span class="what">Madrid 2050° meets three districts on school yards and heat</span></li><li><span class="date">Mid-November</span><span class="what">Max at the Edinburgh Architectural Association</span></li><li><span class="date">18 November</span><span class="what">the last 10x100 of the year</span></li><li><span class="date">November</span><span class="what">the Collaborative allocates its OAK round</span></li><li><span class="date">End of November</span><span class="what">cycle two of change orchestration ends</span></li><li><span class="date">3 December</span><span class="what">Alicia at CONAMA</span></li><li><span class="date">8 December</span><span class="what">GLA framework applications close</span></li><li><span class="date">January 2027</span><span class="what">review of the below-minimum bid protocol</span></li><li><span class="date">End of January 2027</span><span class="what">the Stewards experiment’s six-month checkpoint</span></li></ul><h2 class="sub">In Issue #9</h2><ul class="body-list"><li>How the OAK allocation lands</li><li>What the 10x100 decides</li><li>October’s financial results</li><li>Hackney 2040, the EEA proposal, and RZ’s first cohort, if there is news</li><li>More rendez-vous, and whatever you tag with <strong>#addtonewsletter</strong></li></ul><div class="card accent"><span class="card-label">One more thing</span><p>Use <strong>#addtonewsletter</strong> in any Slack channel to flag something for the next issue.</p><p>Questions or feedback? Drop a note in #org-announcements.</p></div></div></section>
+</main>
+<div class="wrap"><div class="signoff"><p class="sign-italic"><em>See you next month,</em></p><p class="sign-team">The Dm Dispatch Team</p></div></div>
+<footer class="site">
+  <div class="wrap">
+    <div class="mark"><svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dark Matter Labs"><rect x="0" y="0" width="40" height="40" rx="2" fill="#ffffff"/><text x="8" y="29" font-family="'SaansMedium', system-ui, sans-serif" font-size="20" font-weight="500" fill="#111112">Dm</text><text x="30.5" y="12" font-family="'SaansMedium', system-ui, sans-serif" font-size="7" font-weight="500" fill="#111112">08</text></svg></div>
+    <p>Issue #8 — October 2026 — Dark Matter Labs Internal Newsletter</p>
+    <p><a href="/dm-newsletter/">← Back to archive</a></p>
+  </div>
+</footer>
+<!-- Issue #8 festive layer: Day of the Dead, Halloween, Diwali. Everything degrades to a normal page without JS. -->
+<style>
+  :root { --marigold: #f2a541; --pumpkin: #ff7a1a; --flame: #ffd36b; }
+  html, body { overflow-x: hidden; }
+
+  /* Papel picado garland (Día de Muertos) */
+  .picado { display: flex; justify-content: center; gap: 6px; padding: 0 12px; cursor: pointer; background: none; border: 0; width: 100%; }
+  .picado svg { flex: 0 1 46px; transform-origin: top center; animation: sway 4s ease-in-out infinite; }
+  .picado svg:nth-child(2n) { animation-delay: -1.3s; }
+  .picado svg:nth-child(3n) { animation-delay: -2.4s; }
+  @keyframes sway { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+  .picado-note { text-align: center; font-family: var(--font-medium); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); margin: 6px 0 22px; }
+
+  /* Falling things: petals, sparks, confetti */
+  .fall { position: fixed; top: -30px; pointer-events: none; z-index: 50; font-size: 20px; animation: fall linear forwards; }
+  @keyframes fall { to { transform: translateY(110vh) rotate(540deg); opacity: .2; } }
+
+  /* Bats */
+  .bat { position: fixed; z-index: 40; width: 46px; pointer-events: none; animation: bat 7s linear forwards; }
+  .bat path { fill: #000; stroke: var(--accent-periwinkle); stroke-width: 1; }
+  @keyframes bat { from { transform: translate(-60px, 0); } 25% { transform: translate(25vw, -30px); } 50% { transform: translate(50vw, 20px); } 75% { transform: translate(75vw, -25px); } to { transform: translate(110vw, 0); } }
+
+  /* Spooky mode */
+  body.spooky { --accent-lavender: var(--pumpkin); --accent-periwinkle: var(--marigold); }
+  body.spooky .masthead-title::after { content: " 🎃"; }
+  .masthead-logo svg { cursor: pointer; }
+
+  /* Ghost */
+  .ghost { position: fixed; bottom: 18%; left: -90px; z-index: 45; font-size: 54px; pointer-events: none; animation: ghost 6s ease-in-out forwards; }
+  .ghost small { display: block; font: 13px var(--font-medium); color: var(--text-primary); background: var(--surface-raised); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 6px 10px; white-space: nowrap; }
+  @keyframes ghost { 0% { transform: translate(0,0); } 30% { transform: translate(35vw,-20px); } 60% { transform: translate(60vw,10px); opacity: 1; } 100% { transform: translate(110vw,-30px); opacity: 0; } }
+
+  /* Diyas (Diwali), added to the 8 November row */
+  .diyas { display: inline-flex; gap: 6px; margin-left: 10px; vertical-align: middle; }
+  .diya { background: none; border: 0; padding: 2px; cursor: pointer; line-height: 0; }
+  .diya .flame { fill: var(--flame); opacity: 0; transform-origin: 12px 10px; transition: opacity .3s; }
+  .diya.lit .flame { opacity: 1; animation: flicker .9s ease-in-out infinite alternate; }
+  .diya:focus-visible { outline: 1px solid var(--accent-lavender); border-radius: 4px; }
+  @keyframes flicker { from { transform: scale(1,1); } to { transform: scale(.85,1.15); } }
+
+  /* Good news flip cards */
+  .flipgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0 8px; }
+  .flip { perspective: 900px; min-height: 190px; cursor: pointer; outline: none; }
+  .flip-inner { position: relative; width: 100%; height: 100%; min-height: 190px; transition: transform .6s; transform-style: preserve-3d; }
+  .flip.on .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    background: var(--surface-raised); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 20px; }
+  .flip:hover .flip-front, .flip:focus-visible .flip-front { border-color: var(--accent-periwinkle); }
+  .flip-front { display: flex; flex-direction: column; justify-content: center; }
+  .flip-icon { font-size: 30px; margin-bottom: 10px; }
+  .flip h4 { font-family: var(--font-medium); font-weight: 500; font-size: 16px; color: var(--text-primary); }
+  .flip-hint { font-family: var(--font-medium); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-top: 10px; }
+  .flip-back { transform: rotateY(180deg); border-left: 2px solid var(--accent-lavender); }
+  .flip-back p { font-size: 14px; line-height: 1.55; margin: 0; }
+
+  /* A ghost that haunts the still-to-come list */
+  #still-to-come .wrap { position: relative; }
+  .haunt { position: absolute; right: 24px; top: 0; font-size: 34px; animation: bob 3s ease-in-out infinite; cursor: help; }
+  @keyframes bob { 50% { transform: translateY(-8px); } }
+
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 60; background: var(--surface-raised);
+    border: 1px solid var(--accent-lavender); color: var(--text-primary); border-radius: 12px; padding: 12px 18px;
+    font-family: var(--font-medium); font-size: 14px; max-width: calc(100vw - 32px); text-align: center; }
+  .psst { color: var(--text-muted); font-family: var(--font-medium); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+
+  @media (max-width: 640px) { table.finance { min-width: 0; } .flipgrid { grid-template-columns: 1fr; } .haunt { right: 16px; } .diyas { margin: 6px 0 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .picado svg, .haunt, .diya.lit .flame { animation: none; }
+    .flip-inner { transition: none; }
+  }
+</style>
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const toast = (msg) => {
+    $$('.toast').forEach((t) => t.remove());
+    const t = Object.assign(document.createElement('div'), { className: 'toast', textContent: msg });
+    t.setAttribute('role', 'status');
+    document.body.append(t); setTimeout(() => t.remove(), 4200);
+  };
+  const shower = (chars, n = 26) => {
+    if (reduced) return;
+    for (let i = 0; i < n; i++) {
+      const s = Object.assign(document.createElement('span'), { className: 'fall', textContent: chars[i % chars.length] });
+      s.style.left = Math.random() * 100 + 'vw';
+      s.style.animationDuration = 3 + Math.random() * 3 + 's';
+      s.style.animationDelay = Math.random() * 0.8 + 's';
+      document.body.append(s); setTimeout(() => s.remove(), 7000);
+    }
+  };
+  const found = new Set();
+  const find = (name) => { found.add(name); if (found.size === 4) setTimeout(() => toast('You found all four. Happy Halloween, Día de Muertos, and Shubh Deepavali from the Dispatch team ✨'), 900); };
+
+  // 1. Papel picado garland for Día de Muertos, above the masthead
+  const colours = ['#a28cc6', '#f2a541', '#737ea5', '#ff7a1a', '#ffffff', '#f2a541', '#a28cc6', '#737ea5', '#ff7a1a', '#f2a541'];
+  const flag = (c) => `<svg viewBox="0 0 46 52" aria-hidden="true"><path d="M0 0h46v44l-6-6-5 6-6-6-6 6-6-6-5 6-6-6-6 6z" fill="${c}" opacity=".9"/>
+    <circle cx="23" cy="18" r="6" fill="#111112"/><circle cx="11" cy="9" r="2.5" fill="#111112"/><circle cx="35" cy="9" r="2.5" fill="#111112"/>
+    <path d="M13 30h20" stroke="#111112" stroke-width="3" stroke-dasharray="3 3"/></svg>`;
+  const garland = Object.assign(document.createElement('button'), { className: 'picado', type: 'button' });
+  garland.setAttribute('aria-label', 'Papel picado for Día de Muertos. Press for marigolds.');
+  garland.innerHTML = colours.map(flag).join('');
+  const note = Object.assign(document.createElement('p'), { className: 'picado-note', textContent: 'Día de Muertos · 1–2 November' });
+  const mast = $('.masthead');
+  mast.prepend(note); mast.prepend(garland);
+  garland.addEventListener('click', () => { shower(['🌼', '🏵️', '🌸']); toast('Cempasúchil for the ones we remember 🌼'); find('marigolds'); });
+
+  // 2. Bats now and then; three clicks on the Dm stamp turns on spooky mode
+  const bat = () => {
+    if (reduced || document.hidden) return;
+    const b = document.createElement('div'); b.className = 'bat';
+    b.style.top = 40 + Math.random() * 200 + 'px';
+    b.innerHTML = '<svg viewBox="0 0 64 28" aria-hidden="true"><path d="M32 10c2-4 4-5 6-3 2-5 10-8 18-6-4 2-6 6-5 11-4-2-9-1-11 3-3-2-6-2-8 1-2-3-5-3-8-1-2-4-7-5-11-3 1-5-1-9-5-11 8-2 16 1 18 6 2-2 4-1 6 3z"/></svg>';
+    document.body.append(b); setTimeout(() => b.remove(), 7200);
+  };
+  setTimeout(bat, 2500); setInterval(bat, 24000);
+  let clicks = 0, timer;
+  $('.masthead-logo svg').addEventListener('click', () => {
+    clicks++; clearTimeout(timer); timer = setTimeout(() => (clicks = 0), 800);
+    if (clicks < 3) return;
+    clicks = 0;
+    const on = document.body.classList.toggle('spooky');
+    if (on) { for (let i = 0; i < 4; i++) setTimeout(bat, i * 400); shower(['🎃', '🦇', '👻'], 18); toast('Spooky mode. Click the stamp three times to turn it off 🎃'); find('spooky'); }
+  });
+
+  // 3. Diyas on the Diwali row: light all five
+  const row = $$('.events li').find((li) => /Diwali/.test(li.textContent));
+  if (row) {
+    const lamp = '<svg width="24" height="22" viewBox="0 0 24 22" aria-hidden="true"><path class="flame" d="M12 1c3 4 3 7 0 9-3-2-3-5 0-9z"/><path d="M2 12h20c-1 5-5 8-10 8S3 17 2 12z" fill="#c8743a"/><path d="M5 12h14" stroke="#f2a541" stroke-width="2"/></svg>';
+    const box = Object.assign(document.createElement('span'), { className: 'diyas' });
+    for (let i = 0; i < 5; i++) {
+      const d = Object.assign(document.createElement('button'), { className: 'diya', type: 'button', innerHTML: lamp });
+      d.setAttribute('aria-label', `Diya ${i + 1}, not lit`);
+      d.addEventListener('click', () => {
+        const lit = d.classList.toggle('lit');
+        d.setAttribute('aria-label', `Diya ${i + 1}, ${lit ? 'lit' : 'not lit'}`);
+        if ($$('.diya.lit', box).length === 5) { shower(['✨', '🪔', '✨', '🌟'], 30); toast('Shubh Deepavali! May the light win ✨'); find('diyas'); }
+      });
+      box.append(d);
+    }
+    $('.what', row).append(box);
+  }
+
+  // 4. Good news flip cards; turn all four for confetti
+  $$('.flip').forEach((card) => {
+    const turn = (e) => {
+      if (e.target.closest('a')) return;
+      if (e.type === 'keydown' && !['Enter', ' '].includes(e.key)) return;
+      e.preventDefault();
+      const on = card.classList.toggle('on');
+      card.setAttribute('aria-pressed', on);
+      if ($$('.flip.on').length === $$('.flip').length) { shower(['🎉', '🗳️', '✊', '🎓'], 30); toast('Good news, all four of it 🎉'); find('flips'); }
+    };
+    card.addEventListener('click', turn); card.addEventListener('keydown', turn);
+  });
+
+  // 5. A ghost haunting the unanswered list
+  const still = $('#still-to-come .wrap');
+  if (still) {
+    const g = Object.assign(document.createElement('span'), { className: 'haunt', textContent: '👻', title: 'These are still haunting the inbox. Tag an update with #addtonewsletter to set them free.' });
+    still.prepend(g);
+  }
+
+  // 6. Type "boo" anywhere
+  let typed = '';
+  addEventListener('keydown', (e) => {
+    if (e.target.closest?.('input, textarea')) return;
+    typed = (typed + e.key.toLowerCase()).slice(-4);
+    if (!typed.endsWith('boo')) return;
+    typed = '';
+    if (reduced) { toast('👻 Boo! Have you logged October in Streamtime?'); return; }
+    const g = Object.assign(document.createElement('div'), { className: 'ghost' });
+    g.innerHTML = '👻<small>Boo! Have you logged October in Streamtime?</small>';
+    document.body.append(g); setTimeout(() => g.remove(), 6200);
+  });
+
+  const hint = Object.assign(document.createElement('p'), { className: 'psst', textContent: 'Psst: four things on this page do something. Or just type boo.' });
+  $('footer.site .wrap').append(hint);
+})();
+</script>
+
+</body>
+</html>
